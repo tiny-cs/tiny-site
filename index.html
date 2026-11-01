@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>麦禾云创 - 优质云服务与资源导航</title>
+    <title>麦禾云创 - 优质云服务与高价值资源导航</title>
+    <meta name="description" content="麦禾云创 - 专注于分享优质云服务优惠、独立开发工具与 Cloudflare R2 云端直链资源。">
+    <meta name="keywords" content="麦禾云创, 云服务推荐, R2资源下载, 个人资源导航, 开发者工具">
     <style>
         :root {
             --bg-color: #f8fafc;
@@ -13,9 +15,10 @@
             --primary: #2563eb;
             --primary-hover: #1d4ed8;
             --accent: #10b981;
+            --danger: #ef4444;
             --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -39,7 +42,7 @@
 
         header {
             text-align: center;
-            padding: 40px 0 30px;
+            padding: 40px 0 20px;
         }
 
         header h1 {
@@ -52,6 +55,28 @@
         header p {
             color: var(--text-sub);
             font-size: 1rem;
+        }
+
+        /* 搜索框 */
+        .search-box {
+            margin: 20px auto 30px;
+            max-width: 500px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid var(--border);
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+            background-color: var(--card-bg);
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .section-title {
@@ -105,7 +130,7 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .card-icon.r2 {
@@ -113,31 +138,75 @@
             color: var(--accent);
         }
 
+        .card-icon.pan {
+            background-color: #fef2f2;
+            color: var(--danger);
+        }
+
         .card-title {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
         }
 
         .card-desc {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--text-sub);
             line-height: 1.4;
             margin-bottom: 16px;
+            min-height: 38px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-align: center;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            border-top: 1px solid #f1f5f9;
+            padding-top: 10px;
         }
 
         .card-badge {
-            align-self: flex-start;
-            font-size: 0.75rem;
-            padding: 4px 8px;
-            border-radius: 6px;
+            padding: 2px 6px;
+            border-radius: 4px;
             background-color: #f1f5f9;
+            font-weight: 500;
+        }
+
+        .card-badge.hot {
+            background-color: #fee2e2;
+            color: var(--danger);
+        }
+
+        /* 联系方式与页脚 */
+        .contact-box {
+            margin-top: 50px;
+            background-color: var(--card-bg);
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .contact-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-box p {
+            font-size: 0.9rem;
             color: var(--text-sub);
+        }
+
+        .contact-box a {
+            color: var(--primary);
+            text-decoration: none;
             font-weight: 500;
         }
 
         footer {
             text-align: center;
-            margin-top: 60px;
+            margin-top: 40px;
             padding: 20px 0;
             color: var(--text-sub);
             font-size: 0.85rem;
@@ -155,24 +224,32 @@
     <div class="container">
         <header>
             <h1>麦禾云创</h1>
-            <p>分享开发者工具、优质云服务与高价值个人资源</p>
+            <p>专注于分享优质云服务、高效工具与高价值资源直链</p>
         </header>
 
-        <!-- 云服务推荐 -->
-        <h2 class="section-title">推荐云服务</h2>
+        <!-- 站内搜索框 -->
+        <div class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="输入关键词实时搜索资源..." onkeyup="filterCards()">
+        </div>
+
+        <!-- 板块 1：推荐云服务（CPS 变现） -->
+        <h2 class="section-title">精选云服务优惠</h2>
         <div class="grid">
-            <a href="https://curl.qcloud.com/xxxxxx" target="_blank" class="card">
+            <a href="https://curl.qcloud.com/xxxxxx" target="_blank" class="card-item card">
                 <div>
                     <div class="card-header">
                         <div class="card-icon">云</div>
-                        <div class="card-title">轻量云服务器</div>
+                        <div class="card-title">腾讯云轻量服务器</div>
                     </div>
-                    <div class="card-desc">高质量开箱即用的轻量应用服务器，适合个人建站、博客与测试项目搭建。</div>
+                    <div class="card-desc">开箱即用的高性能云服务器，适合个人建站、博客与测试项目搭建。</div>
                 </div>
-                <span class="card-badge">特惠推荐</span>
+                <div class="card-footer">
+                    <span class="card-badge hot">首购特惠</span>
+                    <span>正规云厂商</span>
+                </div>
             </a>
 
-            <a href="https://pages.cloudflare.com" target="_blank" class="card">
+            <a href="https://pages.cloudflare.com" target="_blank" class="card-item card">
                 <div>
                     <div class="card-header">
                         <div class="card-icon">CF</div>
@@ -180,36 +257,70 @@
                     </div>
                     <div class="card-desc">免费、全球加速的静态前端托管平台，联动 GitHub 提交即自动部署。</div>
                 </div>
-                <span class="card-badge">免费托管</span>
+                <div class="card-footer">
+                    <span class="card-badge">免费托管</span>
+                    <span>无限流量</span>
+                </div>
             </a>
         </div>
 
-        <!-- R2 存储与文件分享 -->
+        <!-- 板块 2：R2 云存储直链资源 -->
         <h2 class="section-title">麦禾云存储资源 (R2 直链)</h2>
         <div class="grid">
-            <!-- 示例卡片 1：替换 href 为你的真实 R2 外链地址 -->
-            <a href="https://pub-xxxxxxxxxx.r2.dev/your-file.zip" target="_blank" class="card">
+            <!-- 替换 href 为你在 R2 复制的真实 Public URL -->
+            <a href="https://pub-xxxxxxxxxx.r2.dev/your-file.zip" target="_blank" class="card-item card">
                 <div>
                     <div class="card-header">
-                        <div class="card-icon r2">存</div>
-                        <div class="card-title">优质常用软件合集</div>
+                        <div class="card-icon r2">直</div>
+                        <div class="card-title">优质常用工具包</div>
                     </div>
-                    <div class="card-desc">托管于 Cloudflare R2 全球云存储，支持高速免登录直接下载。</div>
+                    <div class="card-desc">托管于 Cloudflare R2 全球存储，无需登录，点击即可极速直接下载。</div>
                 </div>
-                <span class="card-badge">直链下载</span>
+                <div class="card-footer">
+                    <span class="card-badge">ZIP 格式</span>
+                    <span>免登录直链</span>
+                </div>
             </a>
 
-            <!-- 示例卡片 2 -->
-            <a href="https://pub-xxxxxxxxxx.r2.dev/your-document.pdf" target="_blank" class="card">
+            <a href="https://pub-xxxxxxxxxx.r2.dev/your-guide.pdf" target="_blank" class="card-item card">
                 <div>
                     <div class="card-header">
                         <div class="card-icon r2">档</div>
                         <div class="card-title">建站与运维电子指南</div>
                     </div>
-                    <div class="card-desc">包含个人站点部署、域名解析与自动化运维的完整学习资料。</div>
+                    <div class="card-desc">包含个人站点部署、域名解析与自动化运维的完整学习电子资料。</div>
                 </div>
-                <span class="card-badge">在线预览</span>
+                <div class="card-footer">
+                    <span class="card-badge">PDF 文档</span>
+                    <span>在线预览/下载</span>
+                </div>
             </a>
+        </div>
+
+        <!-- 板块 3：网盘大文件转存（网盘拉新） -->
+        <h2 class="section-title">网盘资源与大文件</h2>
+        <div class="grid">
+            <a href="https://pan.quark.cn/s/xxxxxx" target="_blank" class="card-item card">
+                <div>
+                    <div class="card-header">
+                        <div class="card-icon pan">盘</div>
+                        <div class="card-title">大型软件/视频教程合集</div>
+                    </div>
+                    <div class="card-desc">超大文件通过夸克网盘分发，支持高速转存与在线播放。</div>
+                </div>
+                <div class="card-footer">
+                    <span class="card-badge">夸克网盘</span>
+                    <span>极速转存</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- 联系站长与反馈（集成 SimpleLogin 别名邮箱） -->
+        <div class="contact-box">
+            <h3>📩 商务合作与资源反馈</h3>
+            <p>如果您发现失效链接，或有优质工具/云服务需要推荐，欢迎联系站长：</p>
+            <!-- 将下方的 alias 邮箱替换为您在 SimpleLogin 中创建好的别名地址 -->
+            <p style="margin-top: 8px;"><a href="mailto:your-alias@simplelogin.com">your-alias@simplelogin.com</a></p>
         </div>
 
         <footer>
@@ -217,5 +328,23 @@
         </footer>
     </div>
 
+    <script>
+        // 站内卡片实时搜索过滤
+        function filterCards() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.getElementsByClassName('card-item');
+
+            for (let i = 0; i < cards.length; i++) {
+                const title = cards[i].querySelector('.card-title').innerText.toLowerCase();
+                const desc = cards[i].querySelector('.card-desc').innerText.toLowerCase();
+                
+                if (title.includes(input) || desc.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 </html>
