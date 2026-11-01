@@ -1,11 +1,190 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>我的微型网站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麦禾之家 - 个人网址导航</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --accent-color: #0070f3;
+            --sub-text: #666666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin: 40px 0 30px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: var(--sub-text);
+            font-size: 1rem;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .search-box button {
+            padding: 12px 24px;
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            margin: 30px 0 15px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 16px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: var(--accent-color);
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: var(--sub-text);
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            color: var(--sub-text);
+            font-size: 0.9rem;
+            border-top: 1px solid #e5e5e5;
+        }
+    </style>
 </head>
 <body>
-    <h1>你好，这是我的第一个免费网站！</h1>
-    <p>成功通过 GitHub 和 Cloudflare 搭建。</p>
+
+    <header>
+        <h1>麦禾之家</h1>
+        <p>精选优质网址导航 · 简单高效</p>
+    </header>
+
+    <!-- 搜索框 -->
+    <form class="search-box" action="https://www.baidu.com/s" method="get" target="_blank">
+        <input type="text" name="wd" placeholder="输入关键词搜索百度..." required>
+        <button type="submit">搜索</button>
+    </form>
+
+    <!-- 常用推荐 -->
+    <h2 class="category-title">常用推荐</h2>
+    <div class="grid-container">
+        <a href="https://www.baidu.com" target="_blank" class="card">
+            <h3>百度</h3>
+            <p>全球领先的中文搜索引擎</p>
+        </a>
+        <a href="https://www.bilibili.com" target="_blank" class="card">
+            <h3>哔哩哔哩</h3>
+            <p>国内知名的视频弹幕网站</p>
+        </a>
+        <a href="https://www.zhihu.com" target="_blank" class="card">
+            <h3>知乎</h3>
+            <p>高质量问答社区与知识分享平台</p>
+        </a>
+        <a href="https://www.taobao.com" target="_blank" class="card">
+            <h3>淘宝网</h3>
+            <p>亚太巨大的网络零售商、购物圈</p>
+        </a>
+    </div>
+
+    <!-- 效率与学习 -->
+    <h2 class="category-title">效率与工具</h2>
+    <div class="grid-container">
+        <a href="https://github.com" target="_blank" class="card">
+            <h3>GitHub</h3>
+            <p>全球最大的代码托管与开源社区</p>
+        </a>
+        <a href="https://dash.cloudflare.com" target="_blank" class="card">
+            <h3>Cloudflare</h3>
+            <p>免费 CDN 加速与云端域名管理</p>
+        </a>
+        <a href="https://v2ex.com" target="_blank" class="card">
+            <h3>V2EX</h3>
+            <p>创意工作者及程序员交流社区</p>
+        </a>
+        <a href="https://www.douban.com" target="_blank" class="card">
+            <h3>豆瓣网</h3>
+            <p>图书、电影、音乐生活交流平台</p>
+        </a>
+    </div>
+
+    <footer>
+        <p>© 2026 麦禾之家 | 基于 GitHub & Cloudflare Pages 托管</p>
+    </footer>
+
 </body>
 </html>
