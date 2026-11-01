@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>麦禾云创 - 开发者与云资源精选导航</title>
+    <title>麦禾云创 - 优质云服务与资源导航</title>
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #131c2e;
-            --card-hover: #1e293b;
-            --text-color: #f8fafc;
-            --sub-text: #94a3b8;
-            --accent-color: #3b82f6;
-            --accent-hover: #2563eb;
-            --border-color: #1e293b;
-            --badge-hot: #ef4444;
-            --badge-free: #10b981;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #64748b;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent: #10b981;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -27,280 +27,195 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 20px;
         }
 
-        /* 顶部导航 */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .nav-logo {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--text-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .nav-links a {
-            color: var(--sub-text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-color);
-        }
-
-        /* 主容器 */
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
-            flex: 1;
-            width: 100%;
         }
 
         header {
             text-align: center;
-            margin-bottom: 40px;
+            padding: 40px 0 30px;
         }
 
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            font-size: 2.2rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-weight: 700;
         }
 
         header p {
-            color: var(--sub-text);
+            color: var(--text-sub);
             font-size: 1rem;
         }
 
         .section-title {
             font-size: 1.25rem;
-            margin: 35px 0 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin: 30px 0 16px;
+            padding-left: 10px;
+            border-left: 4px solid var(--primary);
+            color: var(--text-main);
         }
 
-        /* 卡片网格 */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
         }
 
         .card {
             background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 24px;
+            padding: 20px;
             text-decoration: none;
             color: inherit;
+            transition: all 0.2s ease-in-out;
+            box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
         }
 
         .card:hover {
             transform: translateY(-4px);
-            border-color: var(--accent-color);
-            background-color: var(--card-hover);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
         }
 
         .card-header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 12px;
             margin-bottom: 12px;
         }
 
-        .card-title-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
         .card-icon {
-            font-size: 1.5rem;
-        }
-
-        .card-title {
-            font-size: 1.15rem;
-            font-weight: 600;
-        }
-
-        .badge {
-            font-size: 0.75rem;
-            font-weight: bold;
-            padding: 3px 8px;
-            border-radius: 6px;
-            color: #fff;
-        }
-
-        .badge-hot { background-color: var(--badge-hot); }
-        .badge-free { background-color: var(--badge-free); }
-
-        .card-desc {
-            font-size: 0.9rem;
-            color: var(--sub-text);
-            line-height: 1.5;
-            margin-bottom: 20px;
-            flex: 1;
-        }
-
-        .btn-action {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: #eff6ff;
+            color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: background-color 0.2s;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
-        .card:hover .btn-action {
-            background-color: var(--accent-hover);
+        .card-icon.r2 {
+            background-color: #ecfdf5;
+            color: var(--accent);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .card-badge {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background-color: #f1f5f9;
+            color: var(--text-sub);
+            font-weight: 500;
         }
 
         footer {
             text-align: center;
-            padding: 40px 0;
-            color: var(--sub-text);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
             margin-top: 60px;
+            padding: 20px 0;
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
         }
 
-        @media (max-width: 768px) {
-            nav { padding: 15px 20px; }
-            .grid { grid-template-columns: 1fr; }
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- 导航栏 -->
-    <nav>
-        <a href="#" class="nav-logo">🚀 麦禾云创</a>
-        <div class="nav-links">
-            <a href="#server">云主机</a>
-            <a href="#domain">域名与解析</a>
-        </div>
-    </nav>
-
     <div class="container">
         <header>
-            <h1>麦禾云创导航</h1>
-            <p>精选高效开发者工具、免费托管平台与优质云服务推荐</p>
+            <h1>麦禾云创</h1>
+            <p>分享开发者工具、优质云服务与高价值个人资源</p>
         </header>
 
-        <!-- 云主机与服务推荐 -->
-        <h2 id="server" class="section-title">💻 云主机与服务器推荐</h2>
+        <!-- 云服务推荐 -->
+        <h2 class="section-title">推荐云服务</h2>
         <div class="grid">
-            <a href="https://dash.cloudflare.com" target="_blank" class="card">
+            <a href="https://curl.qcloud.com/xxxxxx" target="_blank" class="card">
                 <div>
                     <div class="card-header">
-                        <div class="card-title-group">
-                            <span class="card-icon">⚡</span>
-                            <span class="card-title">Cloudflare Pages</span>
-                        </div>
-                        <span class="badge badge-free">完全免费</span>
+                        <div class="card-icon">云</div>
+                        <div class="card-title">轻量云服务器</div>
                     </div>
-                    <div class="card-desc">全球 CDN 加速的静态网站托管服务，支持 GitHub 自动同步构建。</div>
+                    <div class="card-desc">高质量开箱即用的轻量应用服务器，适合个人建站、博客与测试项目搭建。</div>
                 </div>
-                <div class="btn-action">前往体验</div>
+                <span class="card-badge">特惠推荐</span>
             </a>
 
-            <a href="https://github.com" target="_blank" class="card">
+            <a href="https://pages.cloudflare.com" target="_blank" class="card">
                 <div>
                     <div class="card-header">
-                        <div class="card-title-group">
-                            <span class="card-icon">🐙</span>
-                            <span class="card-title">GitHub 平台</span>
-                        </div>
-                        <span class="badge badge-free">免费开源</span>
+                        <div class="card-icon">CF</div>
+                        <div class="card-title">Cloudflare Pages</div>
                     </div>
-                    <div class="card-desc">全球最大的代码托管与开源社区，提供免费公共/私有仓库。</div>
+                    <div class="card-desc">免费、全球加速的静态前端托管平台，联动 GitHub 提交即自动部署。</div>
                 </div>
-                <div class="btn-action">前往 GitHub</div>
-            </a>
-
-            <!-- 你的专属推荐链接 -->
-            <a href="https://xn--9kqz23b19z.com/#/register?code=8pBDVyda" target="_blank" class="card">
-                <div>
-                    <div class="card-header">
-                        <div class="card-title-group">
-                            <span class="card-icon">🖥️</span>
-                            <span class="card-title">轻量云服务器</span>
-                        </div>
-                        <span class="badge badge-hot">热门推荐</span>
-                    </div>
-                    <div class="card-desc">适合新手建站、部署环境的高性价比服务器选项。点击注册体验。</div>
-                </div>
-                <div class="btn-action">查看推荐方案</div>
+                <span class="card-badge">免费托管</span>
             </a>
         </div>
 
-        <!-- 开发者与域名工具 -->
-        <h2 id="domain" class="section-title">🛠️ 域名与建站辅助工具</h2>
+        <!-- R2 存储与文件分享 -->
+        <h2 class="section-title">麦禾云存储资源 (R2 直链)</h2>
         <div class="grid">
-            <a href="https://dnspod.cn" target="_blank" class="card">
+            <!-- 示例卡片 1：替换 href 为你的真实 R2 外链地址 -->
+            <a href="https://pub-xxxxxxxxxx.r2.dev/your-file.zip" target="_blank" class="card">
                 <div>
                     <div class="card-header">
-                        <div class="card-title-group">
-                            <span class="card-icon">🌐</span>
-                            <span class="card-title">DNS 智能解析</span>
-                        </div>
+                        <div class="card-icon r2">存</div>
+                        <div class="card-title">优质常用软件合集</div>
                     </div>
-                    <div class="card-desc">稳定可靠的高速 DNS 解析服务，提升网站全球访问速度。</div>
+                    <div class="card-desc">托管于 Cloudflare R2 全球云存储，支持高速免登录直接下载。</div>
                 </div>
-                <div class="btn-action">解析控制台</div>
+                <span class="card-badge">直链下载</span>
             </a>
 
-            <!-- 修复后的 SSL 证书卡片链接 -->
-            <a href="https://letsencrypt.org/" target="_blank" class="card">
+            <!-- 示例卡片 2 -->
+            <a href="https://pub-xxxxxxxxxx.r2.dev/your-document.pdf" target="_blank" class="card">
                 <div>
                     <div class="card-header">
-                        <div class="card-title-group">
-                            <span class="card-icon">🔒</span>
-                            <span class="card-title">免费 SSL 证书</span>
-                        </div>
-                        <span class="badge badge-free">快捷申请</span>
+                        <div class="card-icon r2">档</div>
+                        <div class="card-title">建站与运维电子指南</div>
                     </div>
-                    <div class="card-desc">为网站配置安全 HTTPS 加密连接，保障访问数据传输安全。</div>
+                    <div class="card-desc">包含个人站点部署、域名解析与自动化运维的完整学习资料。</div>
                 </div>
-                <div class="btn-action">前往官网了解</div>
+                <span class="card-badge">在线预览</span>
             </a>
         </div>
+
+        <footer>
+            <p>© 2026 麦禾云创 | 托管于 <a href="https://pages.cloudflare.com" target="_blank">Cloudflare Pages</a> & <a href="https://github.com" target="_blank">GitHub</a></p>
+        </footer>
     </div>
-
-    <footer>
-        <p>© 2026 麦禾云创 | 基于 Cloudflare Pages 托管发布</p>
-    </footer>
 
 </body>
 </html>
