@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>麦禾之家 - 精选资源导航</title>
+    <title>麦禾良心云 - 高性价比云服务与资源导航</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -14,7 +14,8 @@
             --accent-color: #3b82f6;
             --accent-hover: #2563eb;
             --border-color: #1e293b;
-            --badge-bg: #f59e0b;
+            --badge-hot: #ef4444;
+            --badge-free: #10b981;
         }
 
         * {
@@ -32,7 +33,7 @@
             flex-direction: column;
         }
 
-        /* 顶部导航栏 */
+        /* 顶部导航 */
         nav {
             display: flex;
             justify-content: space-between;
@@ -42,10 +43,13 @@
         }
 
         .nav-logo {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             color: var(--text-color);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .nav-links {
@@ -73,7 +77,6 @@
             width: 100%;
         }
 
-        /* 头部标题区域 */
         header {
             text-align: center;
             margin-bottom: 40px;
@@ -90,58 +93,9 @@
             font-size: 1rem;
         }
 
-        /* 搜索与分类栏 */
-        .search-section {
-            max-width: 800px;
-            margin: 0 auto 50px;
-            display: flex;
-            gap: 12px;
-        }
-
-        .search-input-wrap {
-            position: relative;
-            flex: 1;
-        }
-
-        .search-input-wrap input {
-            width: 100%;
-            padding: 14px 16px 14px 45px;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: var(--text-color);
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .search-input-wrap input:focus {
-            border-color: var(--accent-color);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--sub-text);
-        }
-
-        .category-select {
-            padding: 0 20px;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: var(--text-color);
-            font-size: 1rem;
-            outline: none;
-            cursor: pointer;
-        }
-
-        /* 模块标题 */
         .section-title {
             font-size: 1.25rem;
-            margin: 40px 0 20px;
+            margin: 35px 0 20px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -150,20 +104,22 @@
         /* 卡片网格 */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
         }
 
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            overflow: hidden;
+            padding: 24px;
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
+            position: relative;
         }
 
         .card:hover {
@@ -172,50 +128,38 @@
             background-color: var(--card-hover);
         }
 
-        .card-img-wrap {
-            position: relative;
-            width: 100%;
-            height: 190px;
-            background-color: #1e293b;
-            overflow: hidden;
-        }
-
-        .card-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .card:hover .card-img-wrap img {
-            transform: scale(1.05);
-        }
-
-        .badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background-color: var(--badge-bg);
-            color: #000;
-            font-size: 0.75rem;
-            font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 6px;
-        }
-
-        .card-body {
-            padding: 20px;
+        .card-header {
             display: flex;
-            flex-direction: column;
-            flex: 1;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
         }
 
         .card-title {
             font-size: 1.15rem;
             font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-color);
         }
+
+        .badge {
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 6px;
+            color: #fff;
+        }
+
+        .badge-hot { background-color: var(--badge-hot); }
+        .badge-free { background-color: var(--badge-free); }
 
         .card-desc {
             font-size: 0.9rem;
@@ -225,7 +169,7 @@
             flex: 1;
         }
 
-        .btn-download {
+        .btn-action {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -236,15 +180,13 @@
             border-radius: 8px;
             font-size: 0.9rem;
             font-weight: 500;
-            text-align: center;
             transition: background-color 0.2s;
         }
 
-        .card:hover .btn-download {
+        .card:hover .btn-action {
             background-color: var(--accent-hover);
         }
 
-        /* 页脚 */
         footer {
             text-align: center;
             padding: 40px 0;
@@ -256,90 +198,110 @@
 
         @media (max-width: 768px) {
             nav { padding: 15px 20px; }
-            .search-section { flex-direction: column; }
             .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 顶部导航栏 -->
+    <!-- 导航栏 -->
     <nav>
-        <a href="#" class="nav-logo">麦禾之家</a>
+        <a href="#" class="nav-logo">☁️ 麦禾良心云</a>
         <div class="nav-links">
-            <a href="#">全部商品</a>
-            <a href="#">热门资源</a>
-            <a href="#">关于本站</a>
+            <a href="#server">云服务器</a>
+            <a href="#cdn">防封CDN/托管</a>
+            <a href="#domain">域名解析</a>
         </div>
     </nav>
 
     <div class="container">
-        <!-- 头部说明 -->
         <header>
-            <h1>麦禾之家</h1>
-            <p>精选资源展示，点击商品跳转获取资源下载地址</p>
+            <h1>麦禾良心云服务</h1>
+            <p>精选高性价比云服务器、免费静态托管与开发者工具导航</p>
         </header>
 
-        <!-- 搜索与分类 -->
-        <div class="search-section">
-            <div class="search-input-wrap">
-                <span class="search-icon">🔍</span>
-                <input type="text" placeholder="搜索资源名称、描述...">
-            </div>
-            <select class="category-select">
-                <option>全部分类</option>
-                <option>设计素材</option>
-                <option>源码模板</option>
-                <option>效率工具</option>
-            </select>
-        </div>
-
-        <!-- 热门资源 -->
-        <h2 class="section-title">🔥 热门资源</h2>
+        <!-- 云主机与服务器推荐 -->
+        <h2 id="server" class="section-title">💻 良心服务器 / 云主机推荐</h2>
         <div class="grid">
-            <a href="https://github.com" target="_blank" class="card">
-                <div class="card-img-wrap">
-                    <span class="badge">热门推荐</span>
-                    <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=600&auto=format&fit=crop&q=80" alt="素材合集">
+            <a href="https://dash.cloudflare.com" target="_blank" class="card">
+                <div>
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <span class="card-icon">⚡</span>
+                            <span class="card-title">Cloudflare Workers/Pages</span>
+                        </div>
+                        <span class="badge badge-free">完全免费</span>
+                    </div>
+                    <div class="card-desc">全球无限流量静态托管 & Edge 边缘计算服务，适合部署个人博客与工具站。</div>
                 </div>
-                <div class="card-body">
-                    <div class="card-title">高清设计素材合集</div>
-                    <div class="card-desc">包含大量高清图片、纹理素材，适合设计、海报制作，可直接用于项目当中。</div>
-                    <div class="btn-download">📥 获取下载地址</div>
-                </div>
-            </a>
-        </div>
-
-        <!-- 商品列表 -->
-        <h2 class="section-title">商品列表</h2>
-        <div class="grid">
-            <a href="https://github.com" target="_blank" class="card">
-                <div class="card-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=600&auto=format&fit=crop&q=80" alt="素材">
-                </div>
-                <div class="card-body">
-                    <div class="card-title">高清设计素材合集</div>
-                    <div class="card-desc">包含大量高清图片、纹理素材，适合设计、海报制作，可直接用于项目当中。</div>
-                    <div class="btn-download">📥 获取下载地址</div>
-                </div>
+                <div class="btn-action">🚀 立即免费体验</div>
             </a>
 
             <a href="https://github.com" target="_blank" class="card">
-                <div class="card-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80" alt="后台模板">
+                <div>
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <span class="card-icon">🐙</span>
+                            <span class="card-title">GitHub Pages / 代码库</span>
+                        </div>
+                        <span class="badge badge-free">免费开源</span>
+                    </div>
+                    <div class="card-desc">免费私有代码仓库，自动构建与代码托管，独立开发者首选。</div>
                 </div>
-                <div class="card-body">
-                    <div class="card-title">后台管理系统模板</div>
-                    <div class="card-desc">完整后台页面模板，内置表格、表单、图表页面，项目快速开发的基础模板。</div>
-                    <div class="btn-download">📥 获取下载地址</div>
+                <div class="btn-action">前往 GitHub</div>
+            </a>
+
+            <a href="#" target="_blank" class="card">
+                <div>
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <span class="card-icon">🖥️</span>
+                            <span class="card-title">高性价比轻量云</span>
+                        </div>
+                        <span class="badge badge-hot">爆款特惠</span>
+                    </div>
+                    <div class="card-desc">适合新手建站、个人测试的低成本云服务器，支持一键安装宝塔面板。</div>
                 </div>
+                <div class="btn-action">查看折扣详情</div>
+            </a>
+        </div>
+
+        <!-- 建站配套工具 -->
+        <h2 id="cdn" class="section-title">🛠️ 建站与域名配套工具</h2>
+        <div class="grid">
+            <a href="https://dnspod.cn" target="_blank" class="card">
+                <div>
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <span class="card-icon">🌐</span>
+                            <span class="card-title">DNS 域名解析</span>
+                        </div>
+                    </div>
+                    <div class="card-desc">快速、稳定的域名 DNS 解析服务，支持智能线路切换与防 DDoS 攻击防护。</div>
+                </div>
+                <div class="btn-action">进入解析控制台</div>
+            </a>
+
+            <a href="#" target="_blank" class="card">
+                <div>
+                    <div class="card-header">
+                        <div class="card-title-group">
+                            <span class="card-icon">🔒</span>
+                            <span class="card-title">免费 SSL 证书申请</span>
+                        </div>
+                        <span class="badge badge-free">免费申请</span>
+                    </div>
+                    <div class="card-desc">一键在线申请 HTTPS 免费证书，保障网站连接加密与访问安全。</div>
+                </div>
+                <div class="btn-action">申请 HTTPS 证书</div>
             </a>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 麦禾之家 | 基于 Cloudflare Pages 全球托管</p>
+        <p>© 2026 麦禾良心云 | 基于 Cloudflare Pages 部署托管</p>
     </footer>
 
 </body>
 </html>
+
