@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>麦禾之家 - 个人网址导航</title>
+    <title>麦禾之家 - 精选资源导航</title>
     <style>
         :root {
-            --bg-color: #f4f6f9;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --accent-color: #0070f3;
-            --sub-text: #666666;
+            --bg-color: #0b0f19;
+            --card-bg: #131c2e;
+            --card-hover: #1e293b;
+            --text-color: #f8fafc;
+            --sub-text: #94a3b8;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --border-color: #1e293b;
+            --badge-bg: #f59e0b;
         }
 
         * {
@@ -23,20 +27,62 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
+        /* 顶部导航栏 */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--sub-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-color);
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* 头部标题区域 */
         header {
             text-align: center;
-            margin: 40px 0 30px;
+            margin-bottom: 40px;
         }
 
         header h1 {
-            font-size: 2.2rem;
-            color: #1a1a1a;
-            margin-bottom: 8px;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         header p {
@@ -44,146 +90,255 @@
             font-size: 1rem;
         }
 
-        .search-box {
-            max-width: 600px;
-            margin: 0 auto 40px;
+        /* 搜索与分类栏 */
+        .search-section {
+            max-width: 800px;
+            margin: 0 auto 50px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .search-box input {
+        .search-input-wrap {
+            position: relative;
             flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+        }
+
+        .search-input-wrap input {
+            width: 100%;
+            padding: 14px 16px 14px 45px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-color);
             font-size: 1rem;
             outline: none;
             transition: border-color 0.2s;
         }
 
-        .search-box input:focus {
+        .search-input-wrap input:focus {
             border-color: var(--accent-color);
         }
 
-        .search-box button {
-            padding: 12px 24px;
-            background-color: var(--accent-color);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--sub-text);
+        }
+
+        .category-select {
+            padding: 0 20px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-color);
             font-size: 1rem;
+            outline: none;
             cursor: pointer;
         }
 
-        .category-title {
-            font-size: 1.3rem;
-            margin: 30px 0 15px;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 10px;
+        /* 模块标题 */
+        .section-title {
+            font-size: 1.25rem;
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .grid-container {
+        /* 卡片网格 */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
         }
 
         .card {
             background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
             text-decoration: none;
             color: inherit;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
             display: flex;
             flex-direction: column;
+            transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
         }
 
         .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+            background-color: var(--card-hover);
         }
 
-        .card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 6px;
-            color: var(--accent-color);
+        .card-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            background-color: #1e293b;
+            overflow: hidden;
         }
 
-        .card p {
-            font-size: 0.85rem;
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .card:hover .card-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: var(--badge-bg);
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
             color: var(--sub-text);
-            line-height: 1.4;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex: 1;
         }
 
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+
+        .card:hover .btn-download {
+            background-color: var(--accent-hover);
+        }
+
+        /* 页脚 */
         footer {
             text-align: center;
-            margin-top: 60px;
-            padding: 20px;
+            padding: 40px 0;
             color: var(--sub-text);
             font-size: 0.9rem;
-            border-top: 1px solid #e5e5e5;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .search-section { flex-direction: column; }
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>麦禾之家</h1>
-        <p>精选优质网址导航 · 简单高效</p>
-    </header>
+    <!-- 顶部导航栏 -->
+    <nav>
+        <a href="#" class="nav-logo">麦禾之家</a>
+        <div class="nav-links">
+            <a href="#">全部商品</a>
+            <a href="#">热门资源</a>
+            <a href="#">关于本站</a>
+        </div>
+    </nav>
 
-    <!-- 搜索框 -->
-    <form class="search-box" action="https://www.baidu.com/s" method="get" target="_blank">
-        <input type="text" name="wd" placeholder="输入关键词搜索百度..." required>
-        <button type="submit">搜索</button>
-    </form>
+    <div class="container">
+        <!-- 头部说明 -->
+        <header>
+            <h1>麦禾之家</h1>
+            <p>精选资源展示，点击商品跳转获取资源下载地址</p>
+        </header>
 
-    <!-- 常用推荐 -->
-    <h2 class="category-title">常用推荐</h2>
-    <div class="grid-container">
-        <a href="https://www.baidu.com" target="_blank" class="card">
-            <h3>百度</h3>
-            <p>全球领先的中文搜索引擎</p>
-        </a>
-        <a href="https://www.bilibili.com" target="_blank" class="card">
-            <h3>哔哩哔哩</h3>
-            <p>国内知名的视频弹幕网站</p>
-        </a>
-        <a href="https://www.zhihu.com" target="_blank" class="card">
-            <h3>知乎</h3>
-            <p>高质量问答社区与知识分享平台</p>
-        </a>
-        <a href="https://www.taobao.com" target="_blank" class="card">
-            <h3>淘宝网</h3>
-            <p>亚太巨大的网络零售商、购物圈</p>
-        </a>
-    </div>
+        <!-- 搜索与分类 -->
+        <div class="search-section">
+            <div class="search-input-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="搜索资源名称、描述...">
+            </div>
+            <select class="category-select">
+                <option>全部分类</option>
+                <option>设计素材</option>
+                <option>源码模板</option>
+                <option>效率工具</option>
+            </select>
+        </div>
 
-    <!-- 效率与学习 -->
-    <h2 class="category-title">效率与工具</h2>
-    <div class="grid-container">
-        <a href="https://github.com" target="_blank" class="card">
-            <h3>GitHub</h3>
-            <p>全球最大的代码托管与开源社区</p>
-        </a>
-        <a href="https://dash.cloudflare.com" target="_blank" class="card">
-            <h3>Cloudflare</h3>
-            <p>免费 CDN 加速与云端域名管理</p>
-        </a>
-        <a href="https://v2ex.com" target="_blank" class="card">
-            <h3>V2EX</h3>
-            <p>创意工作者及程序员交流社区</p>
-        </a>
-        <a href="https://www.douban.com" target="_blank" class="card">
-            <h3>豆瓣网</h3>
-            <p>图书、电影、音乐生活交流平台</p>
-        </a>
+        <!-- 热门资源 -->
+        <h2 class="section-title">🔥 热门资源</h2>
+        <div class="grid">
+            <a href="https://github.com" target="_blank" class="card">
+                <div class="card-img-wrap">
+                    <span class="badge">热门推荐</span>
+                    <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=600&auto=format&fit=crop&q=80" alt="素材合集">
+                </div>
+                <div class="card-body">
+                    <div class="card-title">高清设计素材合集</div>
+                    <div class="card-desc">包含大量高清图片、纹理素材，适合设计、海报制作，可直接用于项目当中。</div>
+                    <div class="btn-download">📥 获取下载地址</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- 商品列表 -->
+        <h2 class="section-title">商品列表</h2>
+        <div class="grid">
+            <a href="https://github.com" target="_blank" class="card">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=600&auto=format&fit=crop&q=80" alt="素材">
+                </div>
+                <div class="card-body">
+                    <div class="card-title">高清设计素材合集</div>
+                    <div class="card-desc">包含大量高清图片、纹理素材，适合设计、海报制作，可直接用于项目当中。</div>
+                    <div class="btn-download">📥 获取下载地址</div>
+                </div>
+            </a>
+
+            <a href="https://github.com" target="_blank" class="card">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format&fit=crop&q=80" alt="后台模板">
+                </div>
+                <div class="card-body">
+                    <div class="card-title">后台管理系统模板</div>
+                    <div class="card-desc">完整后台页面模板，内置表格、表单、图表页面，项目快速开发的基础模板。</div>
+                    <div class="btn-download">📥 获取下载地址</div>
+                </div>
+            </a>
+        </div>
     </div>
 
     <footer>
-        <p>© 2026 麦禾之家 | 基于 GitHub & Cloudflare Pages 托管</p>
+        <p>© 2026 麦禾之家 | 基于 Cloudflare Pages 全球托管</p>
     </footer>
 
 </body>
