@@ -2,25 +2,25 @@
   {
     "section": "home",
     "title": "麦禾云创·国内协同文档 (飞书)",
-    "desc": "国内直连、免代理，支持多人实时在线协同编辑与查阅。",
+    "desc": "国内服务器直连，免网络工具，支持多人实时在线协同编辑与查阅。",
     "link": "https://feishu.cn/docx/your-feishu-id",
     "icon": "国",
     "badge": "国内直连",
-    "tag": "实时协作/推荐"
+    "tag": "实时协作/免翻墙"
   },
   {
     "section": "home",
     "title": "Kimi 智能助手",
-    "desc": "月之暗面国内大模型，支持超长文本理解与实时联网搜索。",
+    "desc": "月之暗面国内大模型，支持超长文本理解与实时联网搜索，无障碍直连。",
     "link": "https://kimi.moonshot.cn",
     "icon": "Ki",
     "badge": "国内直连",
-    "tag": "AI助手/推荐"
+    "tag": "AI助手/免翻墙"
   },
   {
     "section": "cloud",
     "title": "麦禾云创·海外自由文档 (HackMD)",
-    "desc": "海外服务器托管，完全无审查、自由度高，适合 Markdown 协同。",
+    "desc": "海外服务器托管，完全无审查、自由度高，适合 Markdown 实时协同。",
     "link": "https://hackmd.io/@your-id/your-note",
     "icon": "海",
     "badge": "海外使用",
@@ -38,6 +38,15 @@
     "warning": "⚠️ 提示：国内访问需配合网络代理工具。"
   },
   {
+    "section": "cloud",
+    "title": "Cloudflare Pages",
+    "desc": "免费、全球加速的静态前端托管平台，联动 GitHub 提交即自动部署。",
+    "link": "https://pages.cloudflare.com",
+    "icon": "CF",
+    "badge": "海外使用",
+    "tag": "无限流量/托管"
+  },
+  {
     "section": "r2",
     "title": "独立开发者必备工具箱",
     "desc": "托管于 Cloudflare R2 全球存储，无需登录，点击即可极速直接下载。",
@@ -47,6 +56,15 @@
     "tag": "免登录直链"
   },
   {
+    "section": "r2",
+    "title": "建站与运维电子指南",
+    "desc": "包含个人站点部署、域名解析与自动化运维的完整学习电子资料。",
+    "link": "https://dl.maihe.com/your-guide.pdf",
+    "icon": "档",
+    "badge": "全球通用",
+    "tag": "在线预览/下载"
+  },
+  {
     "section": "pan",
     "title": "大型软件/视频教程合集",
     "desc": "超大文件通过夸克网盘分发，支持高速转存与在线播放。",
@@ -54,5 +72,24 @@
     "icon": "盘",
     "badge": "国内直连",
     "tag": "夸克网盘/大文件"
+  },
+  {
+    "section": "contact",
+    "title": "联络站长 / 商务合作",
+    "desc": "如果您有任何建议、资源对接或技术交流需求，欢迎随时通过邮件与我联系。",
+    "link": "mailto:your-email@example.com",
+    "icon": "信",
+    "badge": "国内直连",
+    "tag": "官方邮箱"
+  },
+  {
+    "section": "contact",
+    "title": "Telegram 交流群 / 频道",
+    "desc": "加入极客交流社群，实时获取最新站点动态、R2直链更新与技术分享。",
+    "link": "https://t.me/your-telegram-channel",
+    "icon": "电",
+    "badge": "海外使用",
+    "tag": "TG社群/需代理",
+    "warning": "⚠️ 提示：国内访问需配合网络代理工具。"
   }
 ]
