@@ -6,7 +6,7 @@
     "link": "https://xn--9kqz23b19z.com/#/register?code=8pBDVyda",
     "icon": "云",
     "iconType": "",
-    "badge": "推荐入口",
+    "badge": "国内直连",
     "badgeType": "hot",
     "tag": "专属通道",
     "warning": "⚠️ 提示：若跳转提示“证书不安全”，点击“高级”并选择‘继续访问’即可正常注册。"
@@ -18,21 +18,21 @@
     "link": "https://pages.cloudflare.com",
     "icon": "CF",
     "iconType": "",
-    "badge": "免费托管",
+    "badge": "全球/海外",
     "badgeType": "",
     "tag": "无限流量",
     "warning": ""
   },
   {
     "section": "cloud",
-    "title": "麦禾云创·国内协同文档",
-    "desc": "国内直连、免工具，支持多人实时在线协同编辑与查阅的项目资料库。",
+    "title": "麦禾云创·国内协同文档 (飞书)",
+    "desc": "国内服务器直连，免网络工具，支持多人实时在线协同编辑与查阅。",
     "link": "https://feishu.cn/docx/your-feishu-id",
     "icon": "国",
     "iconType": "",
     "badge": "国内直连",
     "badgeType": "hot",
-    "tag": "实时协作",
+    "tag": "实时协作/免翻墙",
     "warning": ""
   },
   {
@@ -42,10 +42,34 @@
     "link": "https://hackmd.io/@your-id/your-note",
     "icon": "海",
     "iconType": "",
-    "badge": "海外无审查",
+    "badge": "海外使用",
     "badgeType": "",
-    "tag": "Markdown",
+    "tag": "Markdown/需代理",
     "warning": "⚠️ 提示：国内访问此卡片需要网络代理工具。"
+  },
+  {
+    "section": "cloud",
+    "title": "Kimi 智能助手",
+    "desc": "月之暗面国内大模型，支持超长文本理解与实时联网搜索，无障碍使用。",
+    "link": "https://kimi.moonshot.cn",
+    "icon": "Ki",
+    "iconType": "",
+    "badge": "国内直连",
+    "badgeType": "hot",
+    "tag": "AI助手/免翻墙",
+    "warning": ""
+  },
+  {
+    "section": "cloud",
+    "title": "ChatGPT (OpenAI)",
+    "desc": "OpenAI 官方通用人工智能模型，适合跨国业务与高级代码编写。",
+    "link": "https://chatgpt.com",
+    "icon": "GPT",
+    "iconType": "",
+    "badge": "海外使用",
+    "badgeType": "",
+    "tag": "AI领跑者/需代理",
+    "warning": "⚠️ 提示：国内访问需配合网络代理工具。"
   },
   {
     "section": "r2",
@@ -54,7 +78,7 @@
     "link": "https://dl.maihe.com/your-file.zip",
     "icon": "直",
     "iconType": "r2",
-    "badge": "ZIP 格式",
+    "badge": "全球通用",
     "badgeType": "",
     "tag": "免登录直链",
     "warning": ""
@@ -66,7 +90,7 @@
     "link": "https://dl.maihe.com/your-guide.pdf",
     "icon": "档",
     "iconType": "r2",
-    "badge": "PDF 文档",
+    "badge": "全球通用",
     "badgeType": "",
     "tag": "在线预览/下载",
     "warning": ""
@@ -78,9 +102,9 @@
     "link": "https://pan.quark.cn/s/xxxxxx",
     "icon": "盘",
     "iconType": "pan",
-    "badge": "夸克网盘",
+    "badge": "国内直连",
     "badgeType": "",
-    "tag": "极速转存",
+    "tag": "夸克网盘/大文件",
     "warning": ""
   }
 ]
