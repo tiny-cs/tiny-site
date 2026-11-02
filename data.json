@@ -24,6 +24,18 @@
     "warning": ""
   },
   {
+    "section": "cloud",
+    "title": "麦禾云创·开源协同共享文档",
+    "desc": "支持多人实时在线协作、共同编辑与查阅的项目资料库。",
+    "link": "https://docs.qq.com/doc/your-doc-id",
+    "icon": "协",
+    "iconType": "",
+    "badge": "实时协同",
+    "badgeType": "hot",
+    "tag": "在线编辑",
+    "warning": ""
+  },
+  {
     "section": "r2",
     "title": "独立开发者必备工具箱",
     "desc": "托管于 Cloudflare R2 全球存储，无需登录，点击即可极速直接下载。",
