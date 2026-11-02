@@ -13,18 +13,13 @@
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
             --primary: #3b82f6;
-            --primary-glow: rgba(59, 130, 246, 0.15);
             --accent: #10b981;
             --danger: #ef4444;
             --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
             --shadow-hover: 0 20px 35px -5px rgba(59, 130, 246, 0.25);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -40,10 +35,7 @@
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
                 radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.18) 0%, transparent 40%),
                 radial-gradient(circle at 85% 75%, rgba(16, 185, 129, 0.12) 0%, transparent 40%),
@@ -54,64 +46,30 @@
             pointer-events: none;
         }
 
-        .container {
-            max-width: 1050px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1050px; margin: 0 auto; }
 
-        header {
-            text-align: center;
-            padding: 50px 0 30px;
-        }
-
+        header { text-align: center; padding: 50px 0 30px; }
         .header-badge {
-            display: inline-block;
-            padding: 4px 14px;
-            font-size: 0.8rem;
-            color: #60a5fa;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
-            margin-bottom: 12px;
-            backdrop-filter: blur(4px);
+            display: inline-block; padding: 4px 14px; font-size: 0.8rem;
+            color: #60a5fa; background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 20px;
+            margin-bottom: 12px; backdrop-filter: blur(4px);
         }
-
         header h1 {
-            font-size: 2.5rem;
-            color: #ffffff;
-            margin-bottom: 10px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+            font-size: 2.5rem; color: #ffffff; margin-bottom: 10px; font-weight: 800;
             background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
+        header p { color: var(--text-sub); font-size: 1.05rem; }
 
-        header p {
-            color: var(--text-sub);
-            font-size: 1.05rem;
-        }
-
-        .search-box {
-            margin: 30px auto 40px;
-            max-width: 520px;
-            position: relative;
-        }
-
+        .search-box { margin: 30px auto 40px; max-width: 520px; position: relative; }
         .search-input {
-            width: 100%;
-            padding: 14px 24px;
-            border: 1px solid var(--card-border);
-            border-radius: 30px;
-            font-size: 1rem;
-            outline: none;
+            width: 100%; padding: 14px 24px; border: 1px solid var(--card-border);
+            border-radius: 30px; font-size: 1rem; outline: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background-color: var(--card-bg);
-            color: var(--text-main);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background-color: var(--card-bg); color: var(--text-main);
+            backdrop-filter: blur(12px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
-
         .search-input:focus {
             border-color: var(--primary);
             box-shadow: 0 0 25px rgba(59, 130, 246, 0.3);
@@ -119,166 +77,58 @@
         }
 
         .section-title {
-            font-size: 1.25rem;
-            margin: 40px 0 20px;
-            padding-left: 12px;
-            border-left: 4px solid var(--primary);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 1.25rem; margin: 40px 0 20px; padding-left: 12px;
+            border-left: 4px solid var(--primary); color: #ffffff;
+            display: flex; align-items: center; gap: 8px;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 22px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 22px; }
 
         .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 22px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
+            background-color: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 22px; text-decoration: none; color: inherit;
+            transition: all 0.3s ease; box-shadow: var(--shadow);
+            display: flex; flex-direction: column; justify-content: space-between;
+            backdrop-filter: blur(10px); position: relative; overflow: hidden;
         }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
-            pointer-events: none;
-        }
-
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px); box-shadow: var(--shadow-hover);
             border-color: rgba(59, 130, 246, 0.5);
         }
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 12px;
-        }
-
+        .card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
         .card-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.15rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            width: 44px; height: 44px; border-radius: 10px;
+            background: rgba(59, 130, 246, 0.15); color: #60a5fa;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 1.15rem; border: 1px solid rgba(59, 130, 246, 0.2);
         }
+        .card-icon.r2 { background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.2); }
+        .card-icon.pan { background: rgba(239, 68, 68, 0.15); color: #f87171; border-color: rgba(239, 68, 68, 0.2); }
 
-        .card-icon.r2 {
-            background: rgba(16, 185, 129, 0.15);
-            color: #34d399;
-            border-color: rgba(16, 185, 129, 0.2);
-        }
-
-        .card-icon.pan {
-            background: rgba(239, 68, 68, 0.15);
-            color: #f87171;
-            border-color: rgba(239, 68, 68, 0.2);
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .card-desc {
-            font-size: 0.9rem;
-            color: var(--text-sub);
-            line-height: 1.5;
-            margin-bottom: 18px;
-            min-height: 42px;
-        }
-
+        .card-title { font-size: 1.1rem; font-weight: 600; color: #ffffff; }
+        .card-desc { font-size: 0.9rem; color: var(--text-sub); line-height: 1.5; margin-bottom: 18px; min-height: 42px; }
         .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.78rem;
-            color: var(--text-sub);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.78rem; color: var(--text-sub); border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 12px;
         }
+        .card-badge { padding: 3px 8px; border-radius: 6px; background: rgba(255, 255, 255, 0.06); color: #cbd5e1; font-weight: 500; }
+        .card-badge.hot { background: rgba(239, 68, 68, 0.15); color: #f87171; }
 
-        .card-badge {
-            padding: 3px 8px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.06);
-            color: #cbd5e1;
-            font-weight: 500;
-        }
-
-        .card-badge.hot {
-            background: rgba(239, 68, 68, 0.15);
-            color: #f87171;
-        }
+        .no-result { text-align: center; padding: 40px; color: var(--text-sub); display: none; font-size: 0.95rem; }
 
         .contact-box {
-            margin-top: 60px;
-            background-color: var(--card-bg);
-            border: 1px dashed rgba(255, 255, 255, 0.15);
-            border-radius: 16px;
-            padding: 26px;
-            text-align: center;
-            backdrop-filter: blur(10px);
+            margin-top: 60px; background-color: var(--card-bg);
+            border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 16px;
+            padding: 26px; text-align: center; backdrop-filter: blur(10px);
         }
+        .contact-box h3 { font-size: 1.15rem; margin-bottom: 8px; color: #ffffff; }
+        .contact-box p { font-size: 0.92rem; color: var(--text-sub); }
+        .contact-box a { color: #60a5fa; text-decoration: none; font-weight: 500; }
 
-        .contact-box h3 {
-            font-size: 1.15rem;
-            margin-bottom: 8px;
-            color: #ffffff;
-        }
-
-        .contact-box p {
-            font-size: 0.92rem;
-            color: var(--text-sub);
-        }
-
-        .contact-box a {
-            color: #60a5fa;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 24px 0;
-            color: var(--text-sub);
-            font-size: 0.88rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        footer a {
-            color: #60a5fa;
-            text-decoration: none;
-        }
+        footer { text-align: center; margin-top: 50px; padding: 24px 0; color: var(--text-sub); font-size: 0.88rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        footer a { color: #60a5fa; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -295,10 +145,9 @@
             <input type="text" id="searchInput" class="search-input" placeholder="🔍 搜索资源、文件或软件..." onkeyup="filterCards()">
         </div>
 
-        <!-- 板块 1：精选推荐服务 -->
+        <!-- 板块 1：精选云服务优惠 -->
         <h2 class="section-title">☁️ 精选云服务优惠</h2>
-        <div class="grid">
-            <!-- 已替换为指定的目标链接 -->
+        <div class="grid" id="cardGrid1">
             <a href="https://xn--9kqz23b19z.com/#/register?code=8pBDVyda" target="_blank" class="card-item card">
                 <div>
                     <div class="card-header">
@@ -330,7 +179,7 @@
 
         <!-- 板块 2：R2 云存储资源 -->
         <h2 class="section-title">⚡ 麦禾云存储资源 (R2 直链)</h2>
-        <div class="grid">
+        <div class="grid" id="cardGrid2">
             <a href="https://dl.maihe.com/your-file.zip" target="_blank" class="card-item card">
                 <div>
                     <div class="card-header">
@@ -362,7 +211,7 @@
 
         <!-- 板块 3：网盘大文件转存 -->
         <h2 class="section-title">📦 网盘资源与大文件</h2>
-        <div class="grid">
+        <div class="grid" id="cardGrid3">
             <a href="https://pan.quark.cn/s/xxxxxx" target="_blank" class="card-item card">
                 <div>
                     <div class="card-header">
@@ -377,6 +226,9 @@
                 </div>
             </a>
         </div>
+
+        <!-- 搜索无结果时的提示 -->
+        <div id="noResult" class="no-result">没有找到相关资源，请尝试其他关键词或联系站长添加。</div>
 
         <!-- 反馈与联系 -->
         <div class="contact-box">
@@ -394,6 +246,7 @@
         function filterCards() {
             const input = document.getElementById('searchInput').value.toLowerCase();
             const cards = document.getElementsByClassName('card-item');
+            let visibleCount = 0;
 
             for (let i = 0; i < cards.length; i++) {
                 const title = cards[i].querySelector('.card-title').innerText.toLowerCase();
@@ -401,9 +254,17 @@
                 
                 if (title.includes(input) || desc.includes(input)) {
                     cards[i].style.display = "";
+                    visibleCount++;
                 } else {
                     cards[i].style.display = "none";
                 }
+            }
+
+            const noResultEl = document.getElementById('noResult');
+            if (visibleCount === 0) {
+                noResultEl.style.display = "block";
+            } else {
+                noResultEl.style.display = "none";
             }
         }
     </script>
