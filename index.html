@@ -20,16 +20,21 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
+    html, body {
+      height: 100%;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-main);
       min-height: 100vh;
       padding-top: 90px;
-      padding-bottom: 50px;
       line-height: 1.5;
       overflow-x: hidden;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
     /* 🌌 动态背景画布 */
@@ -124,6 +129,7 @@
       max-width: 680px;
       margin: 10px auto 35px auto;
       padding: 0 20px;
+      width: 100%;
     }
 
     .search-box {
@@ -181,7 +187,7 @@
     }
     .search-btn:hover { opacity: 0.9; }
 
-    /* 卡片显示区域 */
+    /* 卡片显示区域 (自动撑开内容) */
     .container {
       max-width: 1150px;
       margin: 0 auto;
@@ -189,6 +195,8 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 22px;
+      flex: 1;
+      width: 100%;
     }
 
     .card {
@@ -232,6 +240,27 @@
     .card-link:hover { background: var(--accent); }
     .warning-text { font-size: 0.75rem; color: #fbbf24; margin-top: 8px; }
 
+    /* 📄 网页底部贴合样式 */
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 25px 20px;
+      border-top: 1px solid var(--card-border);
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      color: var(--text-sub);
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    footer a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
     @media (max-width: 768px) {
       .nav-menu { display: none; }
     }
@@ -242,7 +271,7 @@
   <!-- 🌌 动态背景画布 -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- 📌 固定顶部导航栏（已增加“联系站长”） -->
+  <!-- 📌 固定顶部导航栏 -->
   <nav class="navbar">
     <a href="#" class="nav-brand" onclick="resetHome(event)">
       🌾 麦禾云创
@@ -291,6 +320,14 @@
 
   <!-- 卡片展示容器 -->
   <div class="container" id="card-container"></div>
+
+  <!-- 📄 网页底部 -->
+  <footer>
+    <p>© 2026 麦禾云创 · All Rights Reserved.</p>
+    <p style="margin-top: 6px;">
+      站长联系邮箱：<a href="mailto:zcs334@proton.me">zcs334@proton.me</a>[span_1](start_span)[span_1](end_span)
+    </p>
+  </footer>
 
   <script>
     let allData = [];
