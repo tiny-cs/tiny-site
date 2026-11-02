@@ -3,457 +3,365 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>麦禾云创 · 资源导航</title>
+  <title>麦禾云创 · 极客资源导航</title>
+  <!-- FontAwesome 图标库 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg-color: #0b0f19;
-      --nav-bg: rgba(11, 15, 25, 0.75);
-      --card-bg: rgba(22, 27, 46, 0.65);
-      --card-border: rgba(255, 255, 255, 0.06);
-      --card-hover-border: rgba(99, 102, 241, 0.4);
+      --bg-color: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
       --text-main: #f8fafc;
       --text-sub: #94a3b8;
-      --accent: #6366f1;
-      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --warning-color: #fbbf24;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    html, body {
-      height: 100%;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg-color);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 50%);
+      background-attachment: fixed;
       color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       min-height: 100vh;
-      padding-top: 90px;
-      line-height: 1.5;
-      overflow-x: hidden;
-      position: relative;
       display: flex;
       flex-direction: column;
     }
 
-    /* 🌌 动态背景画布 */
-    #bg-canvas {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1;
-      pointer-events: none;
+    /* 顶部 Header */
+    header {
+      padding: 40px 20px 20px;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
     }
 
-    /* 📌 顶部固定导航栏 */
-    .navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 70px;
-      background: var(--nav-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--card-border);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5%;
-    }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.25rem;
-      font-weight: 800;
-      background: var(--accent-gradient);
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      cursor: pointer;
-      text-decoration: none;
+      margin-bottom: 10px;
     }
 
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav-item {
-      background: transparent;
-      border: 1px solid transparent;
+    header p {
       color: var(--text-sub);
-      padding: 7px 14px;
-      border-radius: 12px;
-      font-size: 0.88rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .nav-item:hover, .nav-item.active {
-      color: #fff;
-      background: rgba(99, 102, 241, 0.15);
-      border-color: rgba(99, 102, 241, 0.3);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .filter-chip {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
-      color: var(--text-sub);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .filter-chip:hover, .filter-chip.active {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-    }
-
-    /* 🔍 极简全能搜索引擎组件 */
-    .search-section {
-      max-width: 680px;
-      margin: 10px auto 35px auto;
-      padding: 0 20px;
-      width: 100%;
-    }
-
-    .search-box {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: 6px 10px 6px 16px;
-      backdrop-filter: blur(14px);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      transition: border-color 0.3s;
-    }
-    .search-box:focus-within {
-      border-color: var(--accent);
-    }
-
-    .engine-select {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      border: none;
-      padding: 8px 10px;
-      border-radius: 10px;
-      font-size: 0.88rem;
-      outline: none;
-      cursor: pointer;
-    }
-    .engine-select option {
-      background: #1e293b;
-      color: #fff;
-    }
-
-    .search-input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text-main);
       font-size: 0.95rem;
     }
-    .search-input::placeholder {
+
+    /* 搜索框 */
+    .search-container {
+      max-width: 500px;
+      margin: 25px auto 0;
+      position: relative;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 12px 20px 12px 45px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 25px;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      backdrop-filter: blur(10px);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .search-container input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+    }
+
+    .search-container i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
       color: var(--text-sub);
     }
 
-    .search-btn {
-      background: var(--accent-gradient);
-      border: none;
-      color: #fff;
-      width: 40px; height: 40px;
-      border-radius: 12px;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.2s;
-    }
-    .search-btn:hover { opacity: 0.9; }
-
-    /* 卡片显示区域 */
-    .container {
-      max-width: 1150px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 22px;
+    /* 主体内容区 */
+    main {
       flex: 1;
+      max-width: 1200px;
       width: 100%;
+      margin: 0 auto;
+      padding: 20px;
     }
 
+    /* 分类标签导航 */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+      border-color: var(--accent);
+    }
+
+    /* 卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    /* 资源卡片 */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 22px;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 12px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
     }
+
     .card:hover {
       transform: translateY(-4px);
-      border-color: var(--card-hover-border);
-      box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.3);
+      border-color: var(--accent);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
 
-    .card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
     .card-icon {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      background: var(--accent-gradient);
-      color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: bold; font-size: 1.1rem; flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      flex-shrink: 0;
     }
-    .card-title { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
-    .card-desc { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 16px; flex-grow: 1; }
-    .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-    .tag { font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; background: rgba(255, 255, 255, 0.05); color: #cbd5e1; }
-    .badge-cn { background: rgba(34, 197, 94, 0.15); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.3); }
-    .badge-os { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
-    
-    .card-link {
-      display: block; text-align: center; background: rgba(255, 255, 255, 0.06);
-      color: var(--text-main); text-decoration: none; padding: 10px;
-      border-radius: 10px; font-size: 0.88rem; font-weight: 500; transition: background 0.2s;
-    }
-    .card-link:hover { background: var(--accent); }
-    .warning-text { font-size: 0.75rem; color: #fbbf24; margin-top: 8px; }
 
-    /* 📄 网页底部 */
-    footer {
-      text-align: center;
-      margin-top: 60px;
-      padding: 25px 20px;
-      border-top: 1px solid var(--card-border);
-      background: var(--nav-bg);
-      backdrop-filter: blur(12px);
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .card-desc {
       color: var(--text-sub);
       font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      flex-grow: 1;
     }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 12px;
+    }
+
+    .card-badge {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-sub);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .card-tag {
+      color: var(--accent);
+    }
+
+    .card-warning {
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: var(--warning-color);
+      background: rgba(251, 191, 36, 0.1);
+      padding: 6px 10px;
+      border-radius: 6px;
+      line-height: 1.4;
+    }
+
+    /* 页脚 Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--text-sub);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--card-border);
+      margin-top: 40px;
+      backdrop-filter: blur(10px);
+    }
+
     footer a {
       color: var(--accent);
       text-decoration: none;
-      transition: opacity 0.2s;
+      transition: color 0.2s ease;
     }
+
     footer a:hover {
-      opacity: 0.8;
       text-decoration: underline;
     }
 
-    @media (max-width: 768px) {
-      .nav-menu { display: none; }
+    /* 响应式调整 */
+    @media (max-width: 640px) {
+      header h1 { font-size: 1.8rem; }
+      .card-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 🌌 动态背景画布 -->
-  <canvas id="bg-canvas"></canvas>
+  <!-- 🚀 顶部 Header 与 搜索框 -->
+  <header>
+    <h1>麦禾云创</h1>
+    <p>精选极客工具 · 开源宝库 · 云端资源导航</p>
+    <div class="search-container">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="搜索资源或工具名称..." oninput="filterCards()">
+    </div>
+  </header>
 
-  <!-- 📌 固定顶部导航栏 -->
-  <nav class="navbar">
-    <a href="#" class="nav-brand" onclick="resetHome(event)">
-      🌾 麦禾云创
-    </a>
-
-    <!-- 导航分类 Tab -->
-    <div class="nav-menu">
-      <button class="nav-item active" onclick="setActiveTab(this); filterData('home', 'section')">
-        <i class="fa-solid fa-compass"></i> 精选主页
-      </button>
-      <button class="nav-item" onclick="setActiveTab(this); filterData('cloud', 'section')">
-        <i class="fa-solid fa-cloud"></i> 云端与AI
-      </button>
-      <button class="nav-item" onclick="setActiveTab(this); filterData('r2', 'section')">
-        <i class="fa-solid fa-bolt"></i> R2直链
-      </button>
-      <button class="nav-item" onclick="setActiveTab(this); filterData('pan', 'section')">
-        <i class="fa-solid fa-folder-open"></i> 极速网盘
-      </button>
+  <!-- 📦 主体内容 -->
+  <main>
+    <!-- 分类 Tab -->
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('all', this)">全部资源</button>
+      <button class="tab-btn" onclick="switchTab('home', this)">精选主页</button>
+      <button class="tab-btn" onclick="switchTab('cloud', this)">云端与AI</button>
+      <button class="tab-btn" onclick="switchTab('r2', this)">R2 直链</button>
+      <button class="tab-btn" onclick="switchTab('pan', this)">网盘资源</button>
     </div>
 
-    <!-- 右侧网络模式筛选 -->
-    <div class="nav-actions">
-      <button class="filter-chip" onclick="filterData('国内直连', 'badge')">🇨🇳 国内免翻</button>
-      <button class="filter-chip" onclick="filterData('海外使用', 'badge')">🌍 海外代理</button>
+    <!-- 卡片渲染网格 -->
+    <div class="card-grid" id="cardGrid">
+      <!-- 由 JS 从 data.json 动态加载 -->
     </div>
-  </nav>
-
-  <!-- 🔍 搜索引擎模块 -->
-  <div class="search-section">
-    <form class="search-box" id="search-form" onsubmit="doSearch(event)">
-      <select class="engine-select" id="engine-select">
-        <option value="https://www.baidu.com/s?wd=">百度</option>
-        <option value="https://www.google.com/search?q=">Google</option>
-        <option value="https://www.bing.com/search?q=">Bing</option>
-        <option value="https://kimi.moonshot.cn/">Kimi AI</option>
-        <option value="https://chat.deepseek.com/">DeepSeek</option>
-      </select>
-      <input type="text" class="search-input" id="search-kw" placeholder="请输入关键词发起搜索..." required autocomplete="off" />
-      <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
-  </div>
-
-  <!-- 卡片展示容器 -->
-  <div class="container" id="card-container"></div>
+  </main>
 
   <!-- 📄 网页底部 -->
   <footer>
     <p>© 2026 麦禾云创 · All Rights Reserved.</p>
-    <p style="margin-top: 6px;">
-      站长联系邮箱：<a href="mailto:tiny.golf878@slmails.com">tiny.golf878@slmails.com</a> 
+    <p style="margin-top: 8px;">
+      站长联系邮箱：<a href="mailto:tiny.golf878@slmails.com">tiny.golf878@slmails.com</a>
       <span style="margin: 0 8px; color: var(--card-border);">|</span>
-      <a href="https://t.me/+WWxpN-Ji0jxlYmVh" target="_blank" style="color: var(--accent);">
+      <a href="https://t.me/+WWxpN-Ji0jxlYmVh" target="_blank">
         <i class="fa-brands fa-telegram"></i> 官方电报群
       </a>
     </p>
   </footer>
 
+  <!-- ⚙️ 脚本处理 -->
   <script>
     let allData = [];
+    let currentCategory = 'all';
 
-    fetch('./data.json')
-      .then(res => res.json())
-      .then(data => {
-        allData = data;
-        renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
-      });
-
-    function setActiveTab(btn) {
-      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-      btn.classList.add('active');
-    }
-
-    function resetHome(e) {
-      e.preventDefault();
-      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-      document.querySelector('.nav-item').classList.add('active');
-      renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
-    }
-
-    // 执行搜索功能
-    function doSearch(e) {
-      e.preventDefault();
-      const engine = document.getElementById('engine-select').value;
-      const kw = document.getElementById('search-kw').value.trim();
-      if (kw) {
-        window.open(engine + encodeURIComponent(kw), '_blank');
+    // 页面加载时自动拉取 data.json
+    async function loadData() {
+      try {
+        const response = await fetch('data.json');
+        allData = await response.json();
+        renderCards();
+      } catch (error) {
+        console.error('加载 data.json 失败:', error);
+        document.getElementById('cardGrid').innerHTML = '<p style="color: var(--text-sub); grid-column: 1/-1; text-align: center;">资源数据加载失败，请检查网络或配置。</p>';
       }
-    }
-
-    // 核心过滤逻辑
-    function filterData(val, type) {
-      if (val === 'home') {
-        renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
-        return;
-      }
-      
-      const filtered = allData.filter(item => {
-        return type === 'section' ? item.section === val : (item.badge && item.badge.includes(val));
-      });
-      renderCards(filtered);
     }
 
     // 渲染卡片
-    function renderCards(dataList) {
-      const container = document.getElementById('card-container');
-      container.innerHTML = '';
-      
-      if (dataList.length === 0) {
-        container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; color:var(--text-sub); padding: 40px;">暂无匹配的资源卡片</div>';
+    function renderCards() {
+      const grid = document.getElementById('cardGrid');
+      const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      const filtered = allData.filter(item => {
+        const matchCategory = currentCategory === 'all' || item.section === currentCategory;
+        const matchKeyword = item.title.toLowerCase().includes(keyword) || 
+                             item.desc.toLowerCase().includes(keyword) ||
+                             (item.tag && item.tag.toLowerCase().includes(keyword));
+        return matchCategory && matchKeyword;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<p style="color: var(--text-sub); grid-column: 1/-1; text-align: center; padding: 40px 0;">未找到相关资源卡片</p>';
         return;
       }
 
-      dataList.forEach(item => {
-        const isCN = item.badge && item.badge.includes('国内');
-        const badgeClass = isCN ? 'badge-cn' : (item.badge && item.badge.includes('海外') ? 'badge-os' : '');
-        
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="card-header">
-            <div class="card-icon">${item.icon || '源'}</div>
-            <div class="card-title">${item.title}</div>
+      grid.innerHTML = filtered.map(item => `
+        <a href="${item.link}" target="_blank" class="card">
+          <div>
+            <div class="card-header">
+              <div class="card-icon">${item.icon || '🔗'}</div>
+              <div class="card-title">${item.title}</div>
+            </div>
+            <div class="card-desc">${item.desc}</div>
           </div>
-          <div class="card-desc">${item.desc}</div>
-          <div class="card-tags">
-            ${item.badge ? `<span class="tag ${badgeClass}">${item.badge}</span>` : ''}
-            ${item.tag ? `<span class="tag">${item.tag}</span>` : ''}
+          <div>
+            ${item.warning ? `<div class="card-warning">${item.warning}</div>` : ''}
+            <div class="card-meta">
+              <span class="card-badge">${item.badge || '资源'}</span>
+              <span class="card-tag">${item.tag || ''}</span>
+            </div>
           </div>
-          <a class="card-link" href="${item.link}" target="_blank">立即访问 / 获取</a>
-          ${item.warning ? `<div class="warning-text">${item.warning}</div>` : ''}
-        `;
-        container.appendChild(card);
-      });
+        </a>
+      `).join('');
     }
 
-    // 🌌 动态背景引擎
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.radius = Math.random() * 2 + 1;
-        this.color = Math.random() > 0.5 ? 'rgba(99, 102, 241, 0.35)' : 'rgba(168, 85, 247, 0.35)';
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-      }
+    // 分类切换
+    function switchTab(category, btn) {
+      currentCategory = category;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCards();
     }
 
-    for (let i = 0; i < 45; i++) particles.push(new Particle());
-
-    function animateBg() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animateBg);
+    // 搜索过滤
+    function filterCards() {
+      renderCards();
     }
-    animateBg();
+
+    // 初始化运行
+    loadData();
   </script>
 </body>
 </html>
