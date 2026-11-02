@@ -1,0 +1,62 @@
+[
+  {
+    "section": "cloud",
+    "title": "云服务与工具注册通道",
+    "desc": "专享极速稳定云服务通道，支持快速注册与一站式配置体验。",
+    "link": "https://xn--9kqz23b19z.com/#/register?code=8pBDVyda",
+    "icon": "云",
+    "iconType": "",
+    "badge": "推荐入口",
+    "badgeType": "hot",
+    "tag": "专属通道",
+    "warning": "⚠️ 提示：若跳转提示“证书不安全”，点击“高级”并选择“继续访问”即可正常注册。"
+  },
+  {
+    "section": "cloud",
+    "title": "Cloudflare Pages",
+    "desc": "免费、全球加速的静态前端托管平台，联动 GitHub 提交即自动部署。",
+    "link": "https://pages.cloudflare.com",
+    "icon": "CF",
+    "iconType": "",
+    "badge": "免费托管",
+    "badgeType": "",
+    "tag": "无限流量",
+    "warning": ""
+  },
+  {
+    "section": "r2",
+    "title": "独立开发者必备工具箱",
+    "desc": "托管于 Cloudflare R2 全球存储，无需登录，点击即可极速直接下载。",
+    "link": "https://dl.maihe.com/your-file.zip",
+    "icon": "直",
+    "iconType": "r2",
+    "badge": "ZIP 格式",
+    "badgeType": "",
+    "tag": "免登录直链",
+    "warning": ""
+  },
+  {
+    "section": "r2",
+    "title": "建站与运维电子指南",
+    "desc": "包含个人站点部署、域名解析与自动化运维的完整学习电子资料。",
+    "link": "https://dl.maihe.com/your-guide.pdf",
+    "icon": "档",
+    "iconType": "r2",
+    "badge": "PDF 文档",
+    "badgeType": "",
+    "tag": "在线预览/下载",
+    "warning": ""
+  },
+  {
+    "section": "pan",
+    "title": "大型软件/视频教程合集",
+    "desc": "超大文件通过夸克网盘分发，支持高速转存与在线播放。",
+    "link": "https://pan.quark.cn/s/xxxxxx",
+    "icon": "盘",
+    "iconType": "pan",
+    "badge": "夸克网盘",
+    "badgeType": "",
+    "tag": "极速转存",
+    "warning": ""
+  }
+]
