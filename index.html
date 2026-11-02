@@ -8,13 +8,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg-color: #0f172a;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --card-border: rgba(255, 255, 255, 0.1);
+      --card-bg: rgba(15, 23, 42, 0.65);
+      --card-border: rgba(255, 255, 255, 0.12);
       --accent: #38bdf8;
-      --accent-hover: #0284c7;
+      --accent-hover: #0ea5e9;
       --text-main: #f8fafc;
-      --text-sub: #94a3b8;
+      --text-sub: #cbd5e1;
       --warning-color: #fbbf24;
     }
 
@@ -25,21 +24,47 @@
     }
 
     body {
-      background-color: var(--bg-color);
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 50%);
-      background-attachment: fixed;
       color: var(--text-main);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 动态风景背景与磨砂遮罩 */
+    .dynamic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=80') no-repeat center center/cover;
+      animation: bgZoom 25s infinite alternate ease-in-out;
+      z-index: -2;
+    }
+
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: -1;
+    }
+
+    @keyframes bgZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
     }
 
     /* 顶部 Header */
     header {
-      padding: 40px 20px 20px;
+      padding: 50px 20px 20px;
       text-align: center;
       max-width: 1200px;
       margin: 0 auto;
@@ -47,12 +72,13 @@
     }
 
     header h1 {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 700;
       background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
     }
 
     header p {
@@ -62,35 +88,38 @@
 
     /* 搜索框 */
     .search-container {
-      max-width: 500px;
+      max-width: 520px;
       margin: 25px auto 0;
       position: relative;
     }
 
     .search-container input {
       width: 100%;
-      padding: 12px 20px 12px 45px;
-      background: rgba(15, 23, 42, 0.6);
+      padding: 14px 20px 14px 48px;
+      background: rgba(30, 41, 59, 0.75);
       border: 1px solid var(--card-border);
-      border-radius: 25px;
+      border-radius: 30px;
       color: var(--text-main);
       font-size: 0.95rem;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       outline: none;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
     .search-container input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+      background: rgba(30, 41, 59, 0.9);
     }
 
     .search-container i {
       position: absolute;
-      left: 18px;
+      left: 20px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--text-sub);
+      font-size: 1rem;
     }
 
     /* 主体内容区 */
@@ -102,20 +131,20 @@
       padding: 20px;
     }
 
-    /* 分类标签导航 */
+    /* 分类标签导航栏 */
     .nav-tabs {
       display: flex;
       justify-content: center;
-      gap: 12px;
-      margin-bottom: 30px;
+      gap: 10px;
+      margin-bottom: 35px;
       flex-wrap: wrap;
     }
 
     .tab-btn {
-      background: var(--card-bg);
+      background: rgba(30, 41, 59, 0.6);
       border: 1px solid var(--card-border);
       color: var(--text-sub);
-      padding: 8px 18px;
+      padding: 9px 20px;
       border-radius: 20px;
       cursor: pointer;
       font-size: 0.9rem;
@@ -128,6 +157,7 @@
       color: #0f172a;
       font-weight: 600;
       border-color: var(--accent);
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
     }
 
     /* 卡片网格 */
@@ -141,21 +171,24 @@
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 20px;
-      backdrop-filter: blur(10px);
+      border-radius: 14px;
+      padding: 22px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       text-decoration: none;
       color: inherit;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
 
     .card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       border-color: var(--accent);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 12px 35px rgba(56, 189, 248, 0.15);
+      background: rgba(30, 41, 59, 0.8);
     }
 
     .card-header {
@@ -166,10 +199,10 @@
     }
 
     .card-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      background: rgba(56, 189, 248, 0.1);
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(56, 189, 248, 0.15);
       color: var(--accent);
       display: flex;
       align-items: center;
@@ -198,7 +231,7 @@
       align-items: center;
       justify-content: space-between;
       font-size: 0.75rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding-top: 12px;
     }
 
@@ -211,13 +244,14 @@
 
     .card-tag {
       color: var(--accent);
+      font-weight: 500;
     }
 
     .card-warning {
       margin-top: 10px;
       font-size: 0.75rem;
       color: var(--warning-color);
-      background: rgba(251, 191, 36, 0.1);
+      background: rgba(251, 191, 36, 0.12);
       padding: 6px 10px;
       border-radius: 6px;
       line-height: 1.4;
@@ -226,12 +260,13 @@
     /* 页脚 Footer */
     footer {
       text-align: center;
-      padding: 30px 20px;
+      padding: 35px 20px;
       color: var(--text-sub);
       font-size: 0.85rem;
       border-top: 1px solid var(--card-border);
-      margin-top: 40px;
+      margin-top: 50px;
       backdrop-filter: blur(10px);
+      background: rgba(15, 23, 42, 0.5);
     }
 
     footer a {
@@ -246,12 +281,16 @@
 
     /* 响应式调整 */
     @media (max-width: 640px) {
-      header h1 { font-size: 1.8rem; }
+      header h1 { font-size: 1.9rem; }
       .card-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+
+  <!-- 🌄 动态风景背景与毛玻璃遮罩层 -->
+  <div class="dynamic-bg"></div>
+  <div class="bg-overlay"></div>
 
   <!-- 🚀 顶部 Header 与 搜索框 -->
   <header>
@@ -265,7 +304,7 @@
 
   <!-- 📦 主体内容 -->
   <main>
-    <!-- 分类 Tab -->
+    <!-- 分类标签导航栏 -->
     <div class="nav-tabs">
       <button class="tab-btn active" onclick="switchTab('all', this)">全部资源</button>
       <button class="tab-btn" onclick="switchTab('home', this)">精选主页</button>
@@ -292,7 +331,7 @@
     </p>
   </footer>
 
-  <!-- ⚙️ 脚本处理 -->
+  <!-- ⚙️ 脚本处理逻辑 -->
   <script>
     let allData = [];
     let currentCategory = 'all';
