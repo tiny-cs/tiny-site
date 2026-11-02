@@ -7,10 +7,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg-color: #0f172a;
-      --nav-bg: rgba(15, 23, 42, 0.8);
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
+      --bg-color: #0b0f19;
+      --nav-bg: rgba(11, 15, 25, 0.75);
+      --card-bg: rgba(22, 27, 46, 0.65);
+      --card-border: rgba(255, 255, 255, 0.06);
       --card-hover-border: rgba(99, 102, 241, 0.4);
       --text-main: #f8fafc;
       --text-sub: #94a3b8;
@@ -19,17 +19,28 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-main);
       min-height: 100vh;
-      padding-top: 90px; /* 留出顶部固定导航栏空间 */
-      padding-bottom: 40px;
+      padding-top: 100px;
+      padding-bottom: 50px;
       line-height: 1.5;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    /* 📌 顶部固定导航栏 (Fixed Header) */
+    /* 🌌 动态流光背景画布 */
+    #bg-canvas {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* 📌 顶部固定导航栏 */
     .navbar {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -45,7 +56,6 @@
       padding: 0 5%;
     }
 
-    /* Brand Logo */
     .nav-brand {
       display: flex;
       align-items: center;
@@ -59,7 +69,6 @@
       text-decoration: none;
     }
 
-    /* 导航分类按钮组 */
     .nav-menu {
       display: flex;
       align-items: center;
@@ -87,7 +96,6 @@
       border-color: rgba(99, 102, 241, 0.3);
     }
 
-    /* 右侧动作控制区 */
     .nav-actions {
       display: flex;
       align-items: center;
@@ -95,7 +103,7 @@
     }
 
     .filter-chip {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--card-border);
       color: var(--text-sub);
       padding: 6px 12px;
@@ -111,6 +119,24 @@
       border-color: var(--accent);
     }
 
+    /* 🌟 主页欢迎头（保持整洁感） */
+    .hero-section {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+      padding: 0 20px;
+    }
+    .hero-section h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+    .hero-section p {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+    }
+
     /* 主内容区 */
     .container {
       max-width: 1150px;
@@ -121,13 +147,14 @@
       gap: 22px;
     }
 
-    /* 卡片美化 */
+    /* 卡片玻璃拟态美化 */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
       padding: 22px;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
@@ -135,8 +162,9 @@
     .card:hover {
       transform: translateY(-4px);
       border-color: var(--card-hover-border);
-      box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.25);
+      box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.3);
     }
+
     .card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
     .card-icon {
       width: 44px; height: 44px;
@@ -149,35 +177,38 @@
     .card-title { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
     .card-desc { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 16px; flex-grow: 1; }
     .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-    .tag { font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; background: rgba(255, 255, 255, 0.06); color: #cbd5e1; }
+    .tag { font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; background: rgba(255, 255, 255, 0.05); color: #cbd5e1; }
     .badge-cn { background: rgba(34, 197, 94, 0.15); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.3); }
     .badge-os { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
+    
     .card-link {
-      display: block; text-align: center; background: rgba(255, 255, 255, 0.08);
+      display: block; text-align: center; background: rgba(255, 255, 255, 0.06);
       color: var(--text-main); text-decoration: none; padding: 10px;
       border-radius: 10px; font-size: 0.88rem; font-weight: 500; transition: background 0.2s;
     }
     .card-link:hover { background: var(--accent); }
     .warning-text { font-size: 0.75rem; color: #fbbf24; margin-top: 8px; }
 
-    /* 移动端适配 */
     @media (max-width: 768px) {
-      .nav-menu { display: none; } /* 移动端隐藏中间文字，保持顶部干净 */
+      .nav-menu { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 🌟 固定顶部导航栏 -->
+  <!-- 🌌 动态背景画布 -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- 📌 固定顶部导航栏 -->
   <nav class="navbar">
-    <a href="#" class="nav-brand" onclick="filterData('all', 'section')">
+    <a href="#" class="nav-brand" onclick="resetHome(event)">
       🌾 麦禾云创
     </a>
 
-    <!-- 中间：核心分类导航Tab -->
+    <!-- 导航分类 Tab -->
     <div class="nav-menu">
-      <button class="nav-item active" onclick="setActiveTab(this); filterData('all', 'section')">
-        <i class="fa-solid fa-house"></i> 全部
+      <button class="nav-item active" onclick="setActiveTab(this); filterData('home', 'section')">
+        <i class="fa-solid fa-compass"></i> 精选主页
       </button>
       <button class="nav-item" onclick="setActiveTab(this); filterData('cloud', 'section')">
         <i class="fa-solid fa-cloud"></i> 云端与AI
@@ -190,12 +221,18 @@
       </button>
     </div>
 
-    <!-- 右侧：国内外通道通道快速过滤 -->
+    <!-- 右侧网络模式筛选 -->
     <div class="nav-actions">
       <button class="filter-chip" onclick="filterData('国内直连', 'badge')">🇨🇳 国内免翻</button>
       <button class="filter-chip" onclick="filterData('海外使用', 'badge')">🌍 海外代理</button>
     </div>
   </nav>
+
+  <!-- 🌟 主页欢迎标语 -->
+  <div class="hero-section" id="hero-title">
+    <h1>麦禾云创资源中心</h1>
+    <p>多维通道协同，连接国内外高效极客体验</p>
+  </div>
 
   <!-- 卡片展示容器 -->
   <div class="container" id="card-container"></div>
@@ -207,32 +244,49 @@
       .then(res => res.json())
       .then(data => {
         allData = data;
-        renderCards(allData);
+        // 🚀 默认只加载带有 "home" 属性或精选的卡片，保持主页面整洁
+        renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
       });
 
-    // 切换 Tab 选中样式
     function setActiveTab(btn) {
       document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
       btn.classList.add('active');
     }
 
-    // 核心过滤逻辑（按 Section 或按 Badge）
+    function resetHome(e) {
+      e.preventDefault();
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+      document.querySelector('.nav-item').classList.add('active');
+      document.getElementById('hero-title').style.display = 'block';
+      renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
+    }
+
+    // 核心过滤逻辑
     function filterData(val, type) {
-      if (val === 'all') {
-        renderCards(allData);
+      const hero = document.getElementById('hero-title');
+      if (val === 'home') {
+        hero.style.display = 'block';
+        renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
         return;
       }
+      
+      hero.style.display = 'none'; // 切换到其他分类时隐藏欢迎标语，专注看内容
       const filtered = allData.filter(item => {
         return type === 'section' ? item.section === val : (item.badge && item.badge.includes(val));
       });
       renderCards(filtered);
     }
 
-    // 渲染卡片 HTML
+    // 渲染卡片
     function renderCards(dataList) {
       const container = document.getElementById('card-container');
       container.innerHTML = '';
       
+      if (dataList.length === 0) {
+        container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; color:var(--text-sub); padding: 40px;">暂无匹配的资源卡片</div>';
+        return;
+      }
+
       dataList.forEach(item => {
         const isCN = item.badge && item.badge.includes('国内');
         const badgeClass = isCN ? 'badge-cn' : (item.badge && item.badge.includes('海外') ? 'badge-os' : '');
@@ -255,6 +309,53 @@
         container.appendChild(card);
       });
     }
+
+    // 🌌 动态背景流光粒子动画引擎
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.radius = Math.random() * 2 + 1;
+        this.color = Math.random() > 0.5 ? 'rgba(99, 102, 241, 0.35)' : 'rgba(168, 85, 247, 0.35)';
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 45; i++) particles.push(new Particle());
+
+    function animateBg() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateBg);
+    }
+    animateBg();
   </script>
 </body>
 </html>
