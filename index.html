@@ -304,10 +304,9 @@
 
   <!-- 📦 主体内容 -->
   <main>
-    <!-- 分类标签导航栏 -->
+    <!-- 分类标签导航栏（去除了“全部资源”，默认选中“精选主页”） -->
     <div class="nav-tabs">
-      <button class="tab-btn active" onclick="switchTab('all', this)">全部资源</button>
-      <button class="tab-btn" onclick="switchTab('home', this)">精选主页</button>
+      <button class="tab-btn active" onclick="switchTab('home', this)">精选主页</button>
       <button class="tab-btn" onclick="switchTab('cloud', this)">云端与AI</button>
       <button class="tab-btn" onclick="switchTab('r2', this)">R2 直链</button>
       <button class="tab-btn" onclick="switchTab('pan', this)">网盘资源</button>
@@ -334,7 +333,7 @@
   <!-- ⚙️ 脚本处理逻辑 -->
   <script>
     let allData = [];
-    let currentCategory = 'all';
+    let currentCategory = 'home'; // 默认初始分类为精选主页
 
     // 页面加载时自动拉取 data.json
     async function loadData() {
@@ -354,7 +353,8 @@
       const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
 
       const filtered = allData.filter(item => {
-        const matchCategory = currentCategory === 'all' || item.section === currentCategory;
+        // 如果输入了搜索关键词，则跨分类全局搜索；若未输入关键词，则严格按照当前选中的分类标签显示
+        const matchCategory = keyword ? true : (item.section === currentCategory);
         const matchKeyword = item.title.toLowerCase().includes(keyword) || 
                              item.desc.toLowerCase().includes(keyword) ||
                              (item.tag && item.tag.toLowerCase().includes(keyword));
@@ -389,12 +389,14 @@
     // 分类切换
     function switchTab(category, btn) {
       currentCategory = category;
+      // 切换分类时清空搜索框，让分类标签纯粹展示对应内容
+      document.getElementById('searchInput').value = '';
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderCards();
     }
 
-    // 搜索过滤
+    // 搜索过滤（支持全站搜索）
     function filterCards() {
       renderCards();
     }
