@@ -1,63 +1,31 @@
 [
   {
     "section": "cloud",
-    "title": "云服务与工具注册通道",
-    "desc": "专享极速稳定云服务通道，支持快速注册与一站式配置体验。",
-    "link": "https://xn--9kqz23b19z.com/#/register?code=8pBDVyda",
-    "icon": "云",
-    "iconType": "",
-    "badge": "国内直连",
-    "badgeType": "hot",
-    "tag": "专属通道",
-    "warning": "⚠️ 提示：若跳转提示“证书不安全”，点击“高级”并选择‘继续访问’即可正常注册。"
-  },
-  {
-    "section": "cloud",
-    "title": "Cloudflare Pages",
-    "desc": "免费、全球加速的静态前端托管平台，联动 GitHub 提交即自动部署。",
-    "link": "https://pages.cloudflare.com",
-    "icon": "CF",
-    "iconType": "",
-    "badge": "全球/海外",
-    "badgeType": "",
-    "tag": "无限流量",
-    "warning": ""
-  },
-  {
-    "section": "cloud",
     "title": "麦禾云创·国内协同文档 (飞书)",
     "desc": "国内服务器直连，免网络工具，支持多人实时在线协同编辑与查阅。",
     "link": "https://feishu.cn/docx/your-feishu-id",
     "icon": "国",
-    "iconType": "",
     "badge": "国内直连",
-    "badgeType": "hot",
-    "tag": "实时协作/免翻墙",
-    "warning": ""
-  },
-  {
-    "section": "cloud",
-    "title": "麦禾云创·海外自由文档 (HackMD)",
-    "desc": "海外服务器托管，完全无审查、自由度高，适合全球极客与开发者协作。",
-    "link": "https://hackmd.io/@your-id/your-note",
-    "icon": "海",
-    "iconType": "",
-    "badge": "海外使用",
-    "badgeType": "",
-    "tag": "Markdown/需代理",
-    "warning": "⚠️ 提示：国内访问此卡片需要网络代理工具。"
+    "tag": "实时协作/免翻墙"
   },
   {
     "section": "cloud",
     "title": "Kimi 智能助手",
-    "desc": "月之暗面国内大模型，支持超长文本理解与实时联网搜索，无障碍使用。",
+    "desc": "月之暗面国内大模型，支持超长文本理解与实时联网搜索。",
     "link": "https://kimi.moonshot.cn",
     "icon": "Ki",
-    "iconType": "",
     "badge": "国内直连",
-    "badgeType": "hot",
-    "tag": "AI助手/免翻墙",
-    "warning": ""
+    "tag": "AI助手/免翻墙"
+  },
+  {
+    "section": "cloud",
+    "title": "麦禾云创·海外自由文档 (HackMD)",
+    "desc": "海外服务器托管，完全无审查、自由度高，适合 Markdown 协同。",
+    "link": "https://hackmd.io/@your-id/your-note",
+    "icon": "海",
+    "badge": "海外使用",
+    "tag": "Markdown/需代理",
+    "warning": "⚠️ 提示：国内访问此卡片需要网络代理工具。"
   },
   {
     "section": "cloud",
@@ -65,9 +33,7 @@
     "desc": "OpenAI 官方通用人工智能模型，适合跨国业务与高级代码编写。",
     "link": "https://chatgpt.com",
     "icon": "GPT",
-    "iconType": "",
     "badge": "海外使用",
-    "badgeType": "",
     "tag": "AI领跑者/需代理",
     "warning": "⚠️ 提示：国内访问需配合网络代理工具。"
   },
@@ -79,9 +45,7 @@
     "icon": "直",
     "iconType": "r2",
     "badge": "全球通用",
-    "badgeType": "",
-    "tag": "免登录直链",
-    "warning": ""
+    "tag": "免登录直链"
   },
   {
     "section": "r2",
@@ -91,9 +55,7 @@
     "icon": "档",
     "iconType": "r2",
     "badge": "全球通用",
-    "badgeType": "",
-    "tag": "在线预览/下载",
-    "warning": ""
+    "tag": "在线预览/下载"
   },
   {
     "section": "pan",
@@ -103,8 +65,6 @@
     "icon": "盘",
     "iconType": "pan",
     "badge": "国内直连",
-    "badgeType": "",
-    "tag": "夸克网盘/大文件",
-    "warning": ""
+    "tag": "夸克网盘/大文件"
   }
 ]
