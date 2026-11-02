@@ -10,6 +10,16 @@
   },
   {
     "section": "home",
+    "title": "🔥 FMHY 全球开源免费资源库",
+    "desc": "收录全网最全的开源软件、极客工具、影音与学习资源终极导航（赛博百宝箱）。",
+    "link": "https://fmhy.net/",
+    "icon": "宝",
+    "badge": "海外使用",
+    "tag": "终极资源库/英文",
+    "warning": "⚠️ 提示：全英文站点，内容极度丰富，建议配合翻译插件食用。"
+  },
+  {
+    "section": "home",
     "title": "麦禾云创·国内协同文档 (飞书)",
     "desc": "国内服务器直连，免网络工具，支持多人实时在线协同编辑与查阅。",
     "link": "https://feishu.cn/docx/your-feishu-id",
@@ -28,13 +38,23 @@
   },
   {
     "section": "cloud",
-    "title": "麦禾云创·海外自由文档 (HackMD)",
-    "desc": "海外服务器托管，完全无审查、自由度高，适合 Markdown 实时协同。",
-    "link": "https://hackmd.io/@your-id/your-note",
-    "icon": "海",
+    "title": "uBlock Origin (全网最强广告拦截)",
+    "desc": "收录于 FMHY 推荐榜首的开源浏览器广告拦截插件，高效净化网页，保护隐私。",
+    "link": "https://github.com/gorhill/uBlock",
+    "icon": "盾",
     "badge": "海外使用",
-    "tag": "Markdown/需代理",
-    "warning": "⚠️ 提示：国内访问此卡片需要网络代理工具。"
+    "tag": "开源/浏览器插件",
+    "warning": "⚠️ 提示：项目托管于 GitHub，部分网络环境需代理。"
+  },
+  {
+    "section": "cloud",
+    "title": "Anna's Archive / 免费电子书库",
+    "desc": "全球最大的开源数字图书馆与文献检索导航，找书、查资料必备神器。",
+    "link": "https://annas-archive.org/",
+    "icon": "书",
+    "badge": "海外使用",
+    "tag": "学习/文献检索",
+    "warning": "⚠️ 提示：访问需要一定的网络代理工具支持。"
   },
   {
     "section": "cloud",
