@@ -1,455 +1,106 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>麦禾云创 · 资源导航</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --bg-color: #0b0f19;
-      --nav-bg: rgba(11, 15, 25, 0.75);
-      --card-bg: rgba(22, 27, 46, 0.65);
-      --card-border: rgba(255, 255, 255, 0.06);
-      --card-hover-border: rgba(99, 102, 241, 0.4);
-      --text-main: #f8fafc;
-      --text-sub: #94a3b8;
-      --accent: #6366f1;
-      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    html, body {
-      height: 100%;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      min-height: 100vh;
-      padding-top: 90px;
-      line-height: 1.5;
-      overflow-x: hidden;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* 🌌 动态背景画布 */
-    #bg-canvas {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    /* 📌 顶部固定导航栏 */
-    .navbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 70px;
-      background: var(--nav-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--card-border);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5%;
-    }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.25rem;
-      font-weight: 800;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav-item {
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--text-sub);
-      padding: 7px 14px;
-      border-radius: 12px;
-      font-size: 0.88rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .nav-item:hover, .nav-item.active {
-      color: #fff;
-      background: rgba(99, 102, 241, 0.15);
-      border-color: rgba(99, 102, 241, 0.3);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .filter-chip {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
-      color: var(--text-sub);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .filter-chip:hover, .filter-chip.active {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-    }
-
-    /* 🔍 极简全能搜索引擎组件 */
-    .search-section {
-      max-width: 680px;
-      margin: 10px auto 35px auto;
-      padding: 0 20px;
-      width: 100%;
-    }
-
-    .search-box {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: 6px 10px 6px 16px;
-      backdrop-filter: blur(14px);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      transition: border-color 0.3s;
-    }
-    .search-box:focus-within {
-      border-color: var(--accent);
-    }
-
-    .engine-select {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      border: none;
-      padding: 8px 10px;
-      border-radius: 10px;
-      font-size: 0.88rem;
-      outline: none;
-      cursor: pointer;
-    }
-    .engine-select option {
-      background: #1e293b;
-      color: #fff;
-    }
-
-    .search-input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text-main);
-      font-size: 0.95rem;
-    }
-    .search-input::placeholder {
-      color: var(--text-sub);
-    }
-
-    .search-btn {
-      background: var(--accent-gradient);
-      border: none;
-      color: #fff;
-      width: 40px; height: 40px;
-      border-radius: 12px;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.2s;
-    }
-    .search-btn:hover { opacity: 0.9; }
-
-    /* 卡片显示区域 */
-    .container {
-      max-width: 1150px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 22px;
-      flex: 1;
-      width: 100%;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 22px;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: var(--card-hover-border);
-      box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.3);
-    }
-
-    .card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-    .card-icon {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      background: var(--accent-gradient);
-      color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: bold; font-size: 1.1rem; flex-shrink: 0;
-    }
-    .card-title { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
-    .card-desc { font-size: 0.88rem; color: var(--text-sub); margin-bottom: 16px; flex-grow: 1; }
-    .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-    .tag { font-size: 0.75rem; padding: 3px 8px; border-radius: 6px; background: rgba(255, 255, 255, 0.05); color: #cbd5e1; }
-    .badge-cn { background: rgba(34, 197, 94, 0.15); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.3); }
-    .badge-os { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
-    
-    .card-link {
-      display: block; text-align: center; background: rgba(255, 255, 255, 0.06);
-      color: var(--text-main); text-decoration: none; padding: 10px;
-      border-radius: 10px; font-size: 0.88rem; font-weight: 500; transition: background 0.2s;
-    }
-    .card-link:hover { background: var(--accent); }
-    .warning-text { font-size: 0.75rem; color: #fbbf24; margin-top: 8px; }
-
-    /* 📄 网页底部 */
-    footer {
-      text-align: center;
-      margin-top: 60px;
-      padding: 25px 20px;
-      border-top: 1px solid var(--card-border);
-      background: var(--nav-bg);
-      backdrop-filter: blur(12px);
-      color: var(--text-sub);
-      font-size: 0.85rem;
-    }
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    footer a:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .nav-menu { display: none; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- 🌌 动态背景画布 -->
-  <canvas id="bg-canvas"></canvas>
-
-  <!-- 📌 固定顶部导航栏（已删除“联系站长”分类） -->
-  <nav class="navbar">
-    <a href="#" class="nav-brand" onclick="resetHome(event)">
-      🌾 麦禾云创
-    </a>
-
-    <!-- 导航分类 Tab -->
-    <div class="nav-menu">
-      <button class="nav-item active" onclick="setActiveTab(this); filterData('home', 'section')">
-        <i class="fa-solid fa-compass"></i> 精选主页
-      </button>
-      <button class="nav-item" onclick="setActiveTab(this); filterData('cloud', 'section')">
-        <i class="fa-solid fa-cloud"></i> 云端与AI
-      </button>
-      <button class="nav-item" onclick="setActiveTab(this); filterData('r2', 'section')">
-        <i class="fa-solid fa-bolt"></i> R2直链
-      </button>
-      <button class="nav-item" onclick="setActiveTab(this); filterData('pan', 'section')">
-        <i class="fa-solid fa-folder-open"></i> 极速网盘
-      </button>
-    </div>
-
-    <!-- 右侧网络模式筛选 -->
-    <div class="nav-actions">
-      <button class="filter-chip" onclick="filterData('国内直连', 'badge')">🇨🇳 国内免翻</button>
-      <button class="filter-chip" onclick="filterData('海外使用', 'badge')">🌍 海外代理</button>
-    </div>
-  </nav>
-
-  <!-- 🔍 搜索引擎模块 -->
-  <div class="search-section">
-    <form class="search-box" id="search-form" onsubmit="doSearch(event)">
-      <select class="engine-select" id="engine-select">
-        <option value="https://www.baidu.com/s?wd=">百度</option>
-        <option value="https://www.google.com/search?q=">Google</option>
-        <option value="https://www.bing.com/search?q=">Bing</option>
-        <option value="https://kimi.moonshot.cn/">Kimi AI</option>
-        <option value="https://chat.deepseek.com/">DeepSeek</option>
-      </select>
-      <input type="text" class="search-input" id="search-kw" placeholder="请输入关键词发起搜索..." required autocomplete="off" />
-      <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
-  </div>
-
-  <!-- 卡片展示容器 -->
-  <div class="container" id="card-container"></div>
-
-  <!-- 📄 网页底部 -->
-  <footer>
-    <p>© 2026 麦禾云创 · All Rights Reserved.</p>
-    <p style="margin-top: 6px;">
-      站长联系邮箱：<a href="mailto:tiny.golf878@slmails.com">tiny.golf878@slmails.com</a>[span_0](start_span)[span_0](end_span)
-    </p>
-  </footer>
-
-  <script>
-    let allData = [];
-
-    fetch('./data.json')
-      .then(res => res.json())
-      .then(data => {
-        allData = data;
-        renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
-      });
-
-    function setActiveTab(btn) {
-      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-      btn.classList.add('active');
-    }
-
-    function resetHome(e) {
-      e.preventDefault();
-      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-      document.querySelector('.nav-item').classList.add('active');
-      renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
-    }
-
-    // 执行搜索功能
-    function doSearch(e) {
-      e.preventDefault();
-      const engine = document.getElementById('engine-select').value;
-      const kw = document.getElementById('search-kw').value.trim();
-      if (kw) {
-        window.open(engine + encodeURIComponent(kw), '_blank');
-      }
-    }
-
-    // 核心过滤逻辑
-    function filterData(val, type) {
-      if (val === 'home') {
-        renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
-        return;
-      }
-      
-      const filtered = allData.filter(item => {
-        return type === 'section' ? item.section === val : (item.badge && item.badge.includes(val));
-      });
-      renderCards(filtered);
-    }
-
-    // 渲染卡片
-    function renderCards(dataList) {
-      const container = document.getElementById('card-container');
-      container.innerHTML = '';
-      
-      if (dataList.length === 0) {
-        container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; color:var(--text-sub); padding: 40px;">暂无匹配的资源卡片</div>';
-        return;
-      }
-
-      dataList.forEach(item => {
-        const isCN = item.badge && item.badge.includes('国内');
-        const badgeClass = isCN ? 'badge-cn' : (item.badge && item.badge.includes('海外') ? 'badge-os' : '');
-        
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="card-header">
-            <div class="card-icon">${item.icon || '源'}</div>
-            <div class="card-title">${item.title}</div>
-          </div>
-          <div class="card-desc">${item.desc}</div>
-          <div class="card-tags">
-            ${item.badge ? `<span class="tag ${badgeClass}">${item.badge}</span>` : ''}
-            ${item.tag ? `<span class="tag">${item.tag}</span>` : ''}
-          </div>
-          <a class="card-link" href="${item.link}" target="_blank">立即访问 / 获取</a>
-          ${item.warning ? `<div class="warning-text">${item.warning}</div>` : ''}
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    // 🌌 动态背景引擎
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.radius = Math.random() * 2 + 1;
-        this.color = Math.random() > 0.5 ? 'rgba(99, 102, 241, 0.35)' : 'rgba(168, 85, 247, 0.35)';
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < 45; i++) particles.push(new Particle());
-
-    function animateBg() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animateBg);
-    }
-    animateBg();
-  </script>
-</body>
-</html>
+[
+  {
+    "section": "home",
+    "title": "💬 麦禾云创官方电报交流群",
+    "desc": "加入极客交流社群，实时获取资源更新、网址报错反馈与日常技术分享。",
+    "link": "https://t.me/+WWxpN-Ji0jxlYmVh",
+    "icon": "群",
+    "badge": "社群互动",
+    "tag": "Telegram / 需代理",
+    "warning": "⚠️ 提示：加入社群需要准备相应的网络代理环境。"
+  },
+  {
+    "section": "home",
+    "title": "🌟 推荐：某高效云服务器 (高性价比)",
+    "desc": "极客首选的高性能云主机，免备案，全球节点加速，支持支付宝付款。",
+    "link": "https://你的专属返利链接地址",
+    "icon": "荐",
+    "badge": "推荐 / 广告",
+    "tag": "限时优惠"
+  },
+  {
+    "section": "home",
+    "title": "🔥 FMHY 全球开源免费资源库",
+    "desc": "收录全网最全的开源软件、极客工具、影音与学习资源终极导航（赛博百宝箱）。",
+    "link": "https://fmhy.net/",
+    "icon": "宝",
+    "badge": "海外使用",
+    "tag": "终极资源库/英文",
+    "warning": "⚠️ 提示：全英文站点，内容极度丰富，建议配合翻译插件食用。"
+  },
+  {
+    "section": "home",
+    "title": "麦禾云创·国内协同文档 (飞书)",
+    "desc": "国内服务器直连，免网络工具，支持多人实时在线协同编辑与查阅。",
+    "link": "https://feishu.cn/docx/your-feishu-id",
+    "icon": "国",
+    "badge": "国内直连",
+    "tag": "实时协作/免翻墙"
+  },
+  {
+    "section": "home",
+    "title": "Kimi 智能助手",
+    "desc": "月之暗面国内大模型，支持超长文本理解与实时联网搜索，无障碍直连。",
+    "link": "https://kimi.moonshot.cn",
+    "icon": "Ki",
+    "badge": "国内直连",
+    "tag": "AI助手/免翻墙"
+  },
+  {
+    "section": "cloud",
+    "title": "uBlock Origin (全网最强广告拦截)",
+    "desc": "收录于 FMHY 推荐榜首的开源浏览器广告拦截插件，高效净化网页，保护隐私。",
+    "link": "https://github.com/gorhill/uBlock",
+    "icon": "盾",
+    "badge": "海外使用",
+    "tag": "开源/浏览器插件",
+    "warning": "⚠️ 提示：项目托管于 GitHub，部分网络环境需代理。"
+  },
+  {
+    "section": "cloud",
+    "title": "Anna's Archive / 免费电子书库",
+    "desc": "全球最大的开源数字图书馆与文献检索导航，找书、查资料必备神器。",
+    "link": "https://annas-archive.org/",
+    "icon": "书",
+    "badge": "海外使用",
+    "tag": "学习/文献检索",
+    "warning": "⚠️ 提示：访问需要一定的网络代理工具支持。"
+  },
+  {
+    "section": "cloud",
+    "title": "ChatGPT (OpenAI)",
+    "desc": "OpenAI 官方通用人工智能模型，适合跨国业务与高级代码编写。",
+    "link": "https://chatgpt.com",
+    "icon": "GPT",
+    "badge": "海外使用",
+    "tag": "AI领跑者/需代理",
+    "warning": "⚠️ 提示：国内访问需配合网络代理工具。"
+  },
+  {
+    "section": "r2",
+    "title": "独立开发者必备工具箱",
+    "desc": "托管于 Cloudflare R2 全球存储，无需登录，点击即可极速直接下载。",
+    "link": "https://dl.maihe.com/your-file.zip",
+    "icon": "直",
+    "badge": "全球通用",
+    "tag": "免登录直链"
+  },
+  {
+    "section": "r2",
+    "title": "建站与运维电子指南",
+    "desc": "包含个人站点部署、域名解析与自动化运维的完整学习电子资料。",
+    "link": "https://dl.maihe.com/your-guide.pdf",
+    "icon": "档",
+    "badge": "全球通用",
+    "tag": "在线预览/下载"
+  },
+  {
+    "section": "pan",
+    "title": "大型软件/视频教程合集",
+    "desc": "超大文件通过夸克网盘分发，支持高速转存与在线播放。",
+    "link": "https://pan.quark.cn/s/xxxxxx",
+    "icon": "盘",
+    "badge": "国内直连",
+    "tag": "夸克网盘/大文件"
+  }
+]
