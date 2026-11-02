@@ -1,6 +1,15 @@
 [
   {
     "section": "home",
+    "title": "🌟 推荐：某高效云服务器 (高性价比)",
+    "desc": "极客首选的高性能云主机，免备案，全球节点加速，支持支付宝付款。",
+    "link": "https://你的专属返利链接地址",
+    "icon": "荐",
+    "badge": "推荐 / 广告",
+    "tag": "限时优惠"
+  },
+  {
+    "section": "home",
     "title": "麦禾云创·国内协同文档 (飞书)",
     "desc": "国内服务器直连，免网络工具，支持多人实时在线协同编辑与查阅。",
     "link": "https://feishu.cn/docx/your-feishu-id",
@@ -63,24 +72,5 @@
     "icon": "盘",
     "badge": "国内直连",
     "tag": "夸克网盘/大文件"
-  },
-  {
-    "section": "contact",
-    "title": "联络站长 / 商务合作",
-    "desc": "如果有任何资源对接、技术交流或建议需求，欢迎发送邮件给我。",
-    "link": "mailto:your-email@example.com",
-    "icon": "信",
-    "badge": "国内直连",
-    "tag": "官方邮箱"
-  },
-  {
-    "section": "contact",
-    "title": "Telegram 交流群 / 频道",
-    "desc": "加入极客社群，获取最新 R2 直链更新与开发者动态。",
-    "link": "https://t.me/your-telegram-channel",
-    "icon": "电",
-    "badge": "海外使用",
-    "tag": "TG社群/需代理",
-    "warning": "⚠️ 提示：国内访问需配合网络代理工具。"
   }
 ]
