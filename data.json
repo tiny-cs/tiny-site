@@ -9,7 +9,7 @@
     "badge": "推荐入口",
     "badgeType": "hot",
     "tag": "专属通道",
-    "warning": "⚠️ 提示：若跳转提示“证书不安全”，点击“高级”并选择“继续访问”即可正常注册。"
+    "warning": "⚠️ 提示：若跳转提示“证书不安全”，点击“高级”并选择‘继续访问’即可正常注册。"
   },
   {
     "section": "cloud",
@@ -25,15 +25,27 @@
   },
   {
     "section": "cloud",
-    "title": "麦禾云创·开源协同共享文档",
-    "desc": "支持多人实时在线协作、共同编辑与查阅的项目资料库。",
-    "link": "https://docs.qq.com/doc/your-doc-id",
-    "icon": "协",
+    "title": "麦禾云创·国内协同文档",
+    "desc": "国内直连、免工具，支持多人实时在线协同编辑与查阅的项目资料库。",
+    "link": "https://feishu.cn/docx/your-feishu-id",
+    "icon": "国",
     "iconType": "",
-    "badge": "实时协同",
+    "badge": "国内直连",
     "badgeType": "hot",
-    "tag": "在线编辑",
+    "tag": "实时协作",
     "warning": ""
+  },
+  {
+    "section": "cloud",
+    "title": "麦禾云创·海外自由文档 (HackMD)",
+    "desc": "海外服务器托管，完全无审查、自由度高，适合全球极客与开发者协作。",
+    "link": "https://hackmd.io/@your-id/your-note",
+    "icon": "海",
+    "iconType": "",
+    "badge": "海外无审查",
+    "badgeType": "",
+    "tag": "Markdown",
+    "warning": "⚠️ 提示：国内访问此卡片需要网络代理工具。"
   },
   {
     "section": "r2",
