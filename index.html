@@ -25,14 +25,14 @@
       background-color: var(--bg-color);
       color: var(--text-main);
       min-height: 100vh;
-      padding-top: 100px;
+      padding-top: 90px;
       padding-bottom: 50px;
       line-height: 1.5;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* 🌌 动态流光背景画布 */
+    /* 🌌 动态背景画布 */
     #bg-canvas {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -119,25 +119,69 @@
       border-color: var(--accent);
     }
 
-    /* 🌟 主页欢迎头（保持整洁感） */
-    .hero-section {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 40px auto;
+    /* 🔍 极简全能搜索引擎组件 */
+    .search-section {
+      max-width: 680px;
+      margin: 10px auto 35px auto;
       padding: 0 20px;
     }
-    .hero-section h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-      letter-spacing: -0.5px;
+
+    .search-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 6px 10px 6px 16px;
+      backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: border-color 0.3s;
     }
-    .hero-section p {
-      color: var(--text-sub);
-      font-size: 0.95rem;
+    .search-box:focus-within {
+      border-color: var(--accent);
     }
 
-    /* 主内容区 */
+    .engine-select {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .engine-select option {
+      background: #1e293b;
+      color: #fff;
+    }
+
+    .search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-main);
+      font-size: 0.95rem;
+    }
+    .search-input::placeholder {
+      color: var(--text-sub);
+    }
+
+    .search-btn {
+      background: var(--accent-gradient);
+      border: none;
+      color: #fff;
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.2s;
+    }
+    .search-btn:hover { opacity: 0.9; }
+
+    /* 卡片显示区域 */
     .container {
       max-width: 1150px;
       margin: 0 auto;
@@ -147,7 +191,6 @@
       gap: 22px;
     }
 
-    /* 卡片玻璃拟态美化 */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -199,7 +242,7 @@
   <!-- 🌌 动态背景画布 -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- 📌 固定顶部导航栏 -->
+  <!-- 📌 固定顶部导航栏（已增加“联系站长”） -->
   <nav class="navbar">
     <a href="#" class="nav-brand" onclick="resetHome(event)">
       🌾 麦禾云创
@@ -219,6 +262,9 @@
       <button class="nav-item" onclick="setActiveTab(this); filterData('pan', 'section')">
         <i class="fa-solid fa-folder-open"></i> 极速网盘
       </button>
+      <button class="nav-item" onclick="setActiveTab(this); filterData('contact', 'section')">
+        <i class="fa-solid fa-paper-plane"></i> 联系站长
+      </button>
     </div>
 
     <!-- 右侧网络模式筛选 -->
@@ -228,10 +274,19 @@
     </div>
   </nav>
 
-  <!-- 🌟 主页欢迎标语 -->
-  <div class="hero-section" id="hero-title">
-    <h1>麦禾云创资源中心</h1>
-    <p>多维通道协同，连接国内外高效极客体验</p>
+  <!-- 🔍 搜索引擎模块 -->
+  <div class="search-section">
+    <form class="search-box" id="search-form" onsubmit="doSearch(event)">
+      <select class="engine-select" id="engine-select">
+        <option value="https://www.baidu.com/s?wd=">百度</option>
+        <option value="https://www.google.com/search?q=">Google</option>
+        <option value="https://www.bing.com/search?q=">Bing</option>
+        <option value="https://kimi.moonshot.cn/">Kimi AI</option>
+        <option value="https://chat.deepseek.com/">DeepSeek</option>
+      </select>
+      <input type="text" class="search-input" id="search-kw" placeholder="请输入关键词发起搜索..." required autocomplete="off" />
+      <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
   </div>
 
   <!-- 卡片展示容器 -->
@@ -244,7 +299,6 @@
       .then(res => res.json())
       .then(data => {
         allData = data;
-        // 🚀 默认只加载带有 "home" 属性或精选的卡片，保持主页面整洁
         renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
       });
 
@@ -257,20 +311,26 @@
       e.preventDefault();
       document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
       document.querySelector('.nav-item').classList.add('active');
-      document.getElementById('hero-title').style.display = 'block';
       renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
+    }
+
+    // 执行搜索功能
+    function doSearch(e) {
+      e.preventDefault();
+      const engine = document.getElementById('engine-select').value;
+      const kw = document.getElementById('search-kw').value.trim();
+      if (kw) {
+        window.open(engine + encodeURIComponent(kw), '_blank');
+      }
     }
 
     // 核心过滤逻辑
     function filterData(val, type) {
-      const hero = document.getElementById('hero-title');
       if (val === 'home') {
-        hero.style.display = 'block';
         renderCards(allData.filter(item => item.section === 'home' || item.badge?.includes('推荐')));
         return;
       }
       
-      hero.style.display = 'none'; // 切换到其他分类时隐藏欢迎标语，专注看内容
       const filtered = allData.filter(item => {
         return type === 'section' ? item.section === val : (item.badge && item.badge.includes(val));
       });
@@ -310,7 +370,7 @@
       });
     }
 
-    // 🌌 动态背景流光粒子动画引擎
+    // 🌌 动态背景引擎
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
