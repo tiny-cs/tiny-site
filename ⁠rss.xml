@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>麦禾云创 / 麦禾之家</title>
+  <link>https://tiny334.pages.dev/</link>
+  <description>麦禾云创官方极客资源与导航站更新推送</description>
+  <language>zh-cn</language>
+
+  <!-- 以后每次更新资源，只需在这里增加一个 <item> 节点即可 -->
+  <item>
+    <title>麦禾云创资源导航站上线通知</title>
+    <link>https://tiny334.pages.dev/</link>
+    <description>麦禾云创资源导航站已正式发布，提供极客工具与云端资源索引。</description>
+    <pubDate>Mon, 02 Nov 2026 12:00:00 +0000</pubDate>
+    <guid>https://tiny334.pages.dev/#v1.0</guid>
+  </item>
+
+</channel>
+</rss>
