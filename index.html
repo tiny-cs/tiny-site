@@ -109,16 +109,10 @@
         .card-title { font-size: 1.1rem; font-weight: 600; color: #ffffff; }
         .card-desc { font-size: 0.9rem; color: var(--text-sub); line-height: 1.5; margin-bottom: 18px; }
         
-        /* 针对不安全提示的醒目样式 */
         .tip-text {
-            display: block;
-            margin-top: 8px;
-            font-size: 0.82rem;
-            color: #fbbf24;
-            background: rgba(251, 191, 36, 0.1);
-            padding: 6px 10px;
-            border-radius: 6px;
-            border: 1px solid rgba(251, 191, 36, 0.2);
+            display: block; margin-top: 8px; font-size: 0.82rem;
+            color: #fbbf24; background: rgba(251, 191, 36, 0.1);
+            padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(251, 191, 36, 0.2);
         }
 
         .card-footer {
@@ -160,88 +154,15 @@
 
         <!-- 板块 1：精选云服务优惠 -->
         <h2 class="section-title">☁️ 精选云服务优惠</h2>
-        <div class="grid" id="cardGrid1">
-            <a href="https://xn--9kqz23b19z.com/#/register?code=8pBDVyda" target="_blank" class="card-item card">
-                <div>
-                    <div class="card-header">
-                        <div class="card-icon">云</div>
-                        <div class="card-title">云服务与工具注册通道</div>
-                    </div>
-                    <div class="card-desc">
-                        专享极速稳定云服务通道，支持快速注册与一站式配置体验。
-                        <span class="tip-text">⚠️ 提示：若跳转提示“证书不安全”，点击“高级”并选择“继续访问”即可正常注册。</span>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <span class="card-badge hot">推荐入口</span>
-                    <span>专属通道</span>
-                </div>
-            </a>
-
-            <a href="https://pages.cloudflare.com" target="_blank" class="card-item card">
-                <div>
-                    <div class="card-header">
-                        <div class="card-icon">CF</div>
-                        <div class="card-title">Cloudflare Pages</div>
-                    </div>
-                    <div class="card-desc">免费,全球加速的静态前端托管平台，联动 GitHub 提交即自动部署。</div>
-                </div>
-                <div class="card-footer">
-                    <span class="card-badge">免费托管</span>
-                    <span>无限流量</span>
-                </div>
-            </a>
-        </div>
+        <div class="grid" id="grid-cloud"></div>
 
         <!-- 板块 2：R2 云存储资源 -->
         <h2 class="section-title">⚡ 麦禾云存储资源 (R2 直链)</h2>
-        <div class="grid" id="cardGrid2">
-            <a href="https://dl.maihe.com/your-file.zip" target="_blank" class="card-item card">
-                <div>
-                    <div class="card-header">
-                        <div class="card-icon r2">直</div>
-                        <div class="card-title">独立开发者必备工具箱</div>
-                    </div>
-                    <div class="card-desc">托管于 Cloudflare R2 全球存储，无需登录，点击即可极速直接下载。</div>
-                </div>
-                <div class="card-footer">
-                    <span class="card-badge">ZIP 格式</span>
-                    <span>免登录直链</span>
-                </div>
-            </a>
-
-            <a href="https://dl.maihe.com/your-guide.pdf" target="_blank" class="card-item card">
-                <div>
-                    <div class="card-header">
-                        <div class="card-icon r2">档</div>
-                        <div class="card-title">建站与运维电子指南</div>
-                    </div>
-                    <div class="card-desc">包含个人站点部署、域名解析与自动化运维的完整学习电子资料。</div>
-                </div>
-                <div class="card-footer">
-                    <span class="card-badge">PDF 文档</span>
-                    <span>在线预览/下载</span>
-                </div>
-            </a>
-        </div>
+        <div class="grid" id="grid-r2"></div>
 
         <!-- 板块 3：网盘大文件转存 -->
         <h2 class="section-title">📦 网盘资源与大文件</h2>
-        <div class="grid" id="cardGrid3">
-            <a href="https://pan.quark.cn/s/xxxxxx" target="_blank" class="card-item card">
-                <div>
-                    <div class="card-header">
-                        <div class="card-icon pan">盘</div>
-                        <div class="card-title">大型软件/视频教程合集</div>
-                    </div>
-                    <div class="card-desc">超大文件通过夸克网盘分发，支持高速转存与在线播放。</div>
-                </div>
-                <div class="card-footer">
-                    <span class="card-badge">夸克网盘</span>
-                    <span>极速转存</span>
-                </div>
-            </a>
-        </div>
+        <div class="grid" id="grid-pan"></div>
 
         <!-- 搜索无结果时的提示 -->
         <div id="noResult" class="no-result">没有找到相关资源，请尝试其他关键词或联系站长添加。</div>
@@ -259,6 +180,46 @@
     </div>
 
     <script>
+        // 页面加载后自动读取 data.json 动态渲染卡片
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('./data.json')
+                .then(response => response.json())
+                .then(data => renderCards(data))
+                .catch(err => console.error('加载 data.json 失败:', err));
+        });
+
+        function renderCards(items) {
+            items.forEach(item => {
+                const targetGrid = document.getElementById(`grid-${item.section}`);
+                if (!targetGrid) return;
+
+                const iconClass = item.iconType ? `card-icon ${item.iconType}` : 'card-icon';
+                const badgeClass = item.badgeType ? `card-badge ${item.badgeType}` : 'card-badge';
+                const warningHtml = item.warning ? `<span class="tip-text">${item.warning}</span>` : '';
+
+                const cardHtml = `
+                    <a href="${item.link}" target="_blank" class="card-item card">
+                        <div>
+                            <div class="card-header">
+                                <div class="${iconClass}">${item.icon}</div>
+                                <div class="card-title">${item.title}</div>
+                            </div>
+                            <div class="card-desc">
+                                ${item.desc}
+                                ${warningHtml}
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="${badgeClass}">${item.badge}</span>
+                            <span>${item.tag}</span>
+                        </div>
+                    </a>
+                `;
+                targetGrid.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+
+        // 站内搜索功能
         function filterCards() {
             const input = document.getElementById('searchInput').value.toLowerCase();
             const cards = document.getElementsByClassName('card-item');
@@ -277,11 +238,7 @@
             }
 
             const noResultEl = document.getElementById('noResult');
-            if (visibleCount === 0) {
-                noResultEl.style.display = "block";
-            } else {
-                noResultEl.style.display = "none";
-            }
+            noResultEl.style.display = (visibleCount === 0) ? "block" : "none";
         }
     </script>
 </body>
