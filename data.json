@@ -1,21 +1,21 @@
 [
   {
-    "section": "cloud",
+    "section": "home",
     "title": "麦禾云创·国内协同文档 (飞书)",
-    "desc": "国内服务器直连，免网络工具，支持多人实时在线协同编辑与查阅。",
+    "desc": "国内直连、免代理，支持多人实时在线协同编辑与查阅。",
     "link": "https://feishu.cn/docx/your-feishu-id",
     "icon": "国",
     "badge": "国内直连",
-    "tag": "实时协作/免翻墙"
+    "tag": "实时协作/推荐"
   },
   {
-    "section": "cloud",
+    "section": "home",
     "title": "Kimi 智能助手",
     "desc": "月之暗面国内大模型，支持超长文本理解与实时联网搜索。",
     "link": "https://kimi.moonshot.cn",
     "icon": "Ki",
     "badge": "国内直连",
-    "tag": "AI助手/免翻墙"
+    "tag": "AI助手/推荐"
   },
   {
     "section": "cloud",
@@ -43,19 +43,8 @@
     "desc": "托管于 Cloudflare R2 全球存储，无需登录，点击即可极速直接下载。",
     "link": "https://dl.maihe.com/your-file.zip",
     "icon": "直",
-    "iconType": "r2",
     "badge": "全球通用",
     "tag": "免登录直链"
-  },
-  {
-    "section": "r2",
-    "title": "建站与运维电子指南",
-    "desc": "包含个人站点部署、域名解析与自动化运维的完整学习电子资料。",
-    "link": "https://dl.maihe.com/your-guide.pdf",
-    "icon": "档",
-    "iconType": "r2",
-    "badge": "全球通用",
-    "tag": "在线预览/下载"
   },
   {
     "section": "pan",
@@ -63,7 +52,6 @@
     "desc": "超大文件通过夸克网盘分发，支持高速转存与在线播放。",
     "link": "https://pan.quark.cn/s/xxxxxx",
     "icon": "盘",
-    "iconType": "pan",
     "badge": "国内直连",
     "tag": "夸克网盘/大文件"
   }
