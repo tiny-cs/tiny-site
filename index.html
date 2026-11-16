@@ -256,6 +256,14 @@
       line-height: 1.4;
     }
 
+    /* 邮箱订阅 */
+    .subscribe { max-width: 760px; margin: 40px auto 0; background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.35); border-radius: 14px; padding: 24px; text-align: center; }
+    .subscribe h2 { font-size: 1.15rem; margin-bottom: 6px; }
+    .subscribe p { color: var(--text-sub); font-size: .85rem; margin-bottom: 14px; }
+    .subscribe form { display: flex; gap: 10px; max-width: 480px; margin: 0 auto; }
+    .subscribe input { flex: 1; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--card-border); background: rgba(15,23,42,.8); color: var(--text-main); outline: none; font-size: .9rem; }
+    .subscribe button { padding: 12px 22px; border: none; border-radius: 10px; background: var(--accent); color: #0f172a; font-weight: 700; cursor: pointer; }
+    @media (max-width: 640px) { .subscribe form { flex-direction: column; } }
     /* 页脚 Footer */
     footer {
       text-align: center;
@@ -319,6 +327,16 @@
       <!-- 由 JS 从 data.json 动态加载 -->
     </div>
   </main>
+
+  <!-- 📧 邮箱订阅 -->
+  <section class="subscribe">
+    <h2>📧 邮箱订阅</h2>
+    <p>新教程、新工具发出来，第一时间发到你邮箱，每周最多一封。</p>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/Tiny334" method="post" target="_blank">
+      <input type="email" name="email" placeholder="输入你的邮箱" required>
+      <button type="submit">订阅</button>
+    </form>
+  </section>
 
   <!-- 📄 网页底部 -->
   <footer>
