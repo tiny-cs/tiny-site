@@ -8,6 +8,13 @@
 
   <!-- 以后每次更新资源，只需在这里增加一个 <item> 节点即可 -->
   <item>
+    <title>免费搭建 Cloudflare 节点：10 分钟部署 VLESS 节点</title>
+    <link>https://cs334.ccwu.cc/cloudflare-node-tutorial.html</link>
+    <description>用 Cloudflare Pages + edgetunnel，免费搭一个自己的 VLESS 节点，成本 0 元，10 分钟搞定，含 QX 导入方法。</description>
+    <pubDate>Mon, 16 Nov 2026 12:00:00 +0000</pubDate>
+    <guid>https://cs334.ccwu.cc/#v2.0</guid>
+  </item>
+  <item>
     <title>麦禾云创资源导航站上线通知</title>
     <link>https://cs334.ccwu.cc/</link>
     <description>麦禾云创资源导航站已正式发布，提供极客工具与云端资源索引。</description>
