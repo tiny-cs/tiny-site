@@ -9,6 +9,15 @@
     "tag": "免费/实测"
   },
   {
+    "section": "home",
+    "title": "🌟 推荐：搬瓦工 BandwagonHost VPS (高性价比)",
+    "desc": "极客首选的高性能云主机，免备案，全球节点加速，支持支付宝付款。",
+    "link": "https://bwh81.net/aff.php?aff=85841",
+    "icon": "荐",
+    "badge": "推荐 / 广告",
+    "tag": "限时优惠"
+  },
+  {
     "badge": "社群互动",
     "desc": "加入极客交流社群，实时获取资源更新、网址报错反馈与日常技术分享。",
     "icon": "群",
