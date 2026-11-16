@@ -10,6 +10,15 @@
   },
   {
     "section": "home",
+    "title": "🎓 谷歌学生认证：免费领一年 Google AI Pro",
+    "desc": "年满 18 岁在读大学生，SheerID 认证后免费领 12 个月 Google AI Pro / AI Plus，2026 年 12 月 31 日截止。",
+    "link": "https://cs334.ccwu.cc/google-student-verification.html",
+    "icon": "学",
+    "badge": "教程",
+    "tag": "免费/限时"
+  },
+  {
+    "section": "home",
     "title": "🌟 推荐：搬瓦工 BandwagonHost VPS (高性价比)",
     "desc": "极客首选的高性能云主机，免备案，全球节点加速，支持支付宝付款。",
     "link": "https://bwh81.net/aff.php?aff=85841",
