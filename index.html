@@ -319,6 +319,8 @@
     <!-- 分类标签导航栏（去除了“全部资源”，默认选中“精选主页”） -->
     <div class="nav-tabs">
       <button class="tab-btn active" onclick="switchTab('home', this)">精选主页</button>
+      <button class="tab-btn" onclick="switchTab('free', this)">免费福利</button>
+      <button class="tab-btn" onclick="switchTab('paid', this)">付费推荐</button>
       <button class="tab-btn" onclick="switchTab('cloud', this)">云端与AI</button>
     </div>
 
@@ -389,7 +391,7 @@
       }
 
       grid.innerHTML = filtered.map(item => `
-        <a href="${item.link}" target="_blank" class="card">
+        <a href="${item.link}" target="_blank" class="card${item.featured ? ' featured' : ''}${item.promo ? ' promo' : ''}">
           <div>
             <div class="card-header">
               <div class="card-icon">${item.icon || '🔗'}</div>
