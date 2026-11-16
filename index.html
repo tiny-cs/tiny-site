@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>麦禾云创 · 极客资源导航</title>
+  <meta name="description" content="麦禾云创极客资源导航：精选工具、开源宝库、免费节点教程、VPS 测评。">
+  <link rel="alternate" type="application/rss+xml" title="麦禾云创" href="/rss.xml">
   <!-- FontAwesome 图标库 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -33,34 +35,31 @@
       overflow-x: hidden;
     }
 
-    /* 动态风景背景与磨砂遮罩 */
-    .dynamic-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=80') no-repeat center center/cover;
-      animation: bgZoom 25s infinite alternate ease-in-out;
-      z-index: -2;
+    /* 深色渐变背景 + 光晕 + 细网格，不用外链图片，加载快、对比稳 */
+    body {
+      background:
+        radial-gradient(600px 300px at 15% 0%, rgba(56,189,248,.18), transparent 60%),
+        radial-gradient(500px 300px at 85% 10%, rgba(129,140,248,.16), transparent 60%),
+        linear-gradient(180deg, #0b1220 0%, #0f172a 55%, #111827 100%);
+      background-attachment: fixed;
     }
-
-    .bg-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: -1;
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none; z-index: 0;
     }
-
-    @keyframes bgZoom {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.08); }
-    }
+    main, header, footer { position: relative; z-index: 1; }
+    .topbar { max-width: 1200px; margin: 0 auto; width: 100%; padding: 18px 20px 0; display: flex; justify-content: space-between; align-items: center; }
+    .topbar a { color: var(--text-sub); text-decoration: none; font-size: .85rem; margin-left: 16px; }
+    .topbar a:hover { color: var(--accent); }
+    .hero { max-width: 760px; margin: 0 auto; text-align: center; }
+    .hero .kicker { display: inline-block; font-size: .75rem; letter-spacing: 2px; color: var(--accent); border: 1px solid rgba(56,189,248,.4); padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+    /* 精选教程卡片置顶加宽，推广卡金边 */
+    .card.featured { grid-column: span 2; background: linear-gradient(135deg, rgba(56,189,248,.16), rgba(15,23,42,.8)); border-color: rgba(56,189,248,.45); }
+    .card.promo { border-color: rgba(251,191,36,.55); }
+    @media (max-width: 640px) { .card.featured { grid-column: span 1; } }
 
     /* 顶部 Header */
     header {
@@ -288,14 +287,19 @@
 </head>
 <body>
 
-  <!-- 🌄 动态风景背景与毛玻璃遮罩层 -->
-  <div class="dynamic-bg"></div>
-  <div class="bg-overlay"></div>
+  <!-- 顶部栏 -->
+  <div class="topbar">
+    <strong>🌾 麦禾云创</strong>
+    <div><a href="/rss.xml">RSS 订阅</a><a href="https://t.me/+WWxpN-Ji0jxlYmVh" target="_blank">电报群</a></div>
+  </div>
 
   <!-- 🚀 顶部 Header 与 搜索框 -->
   <header>
+    <div class="hero">
+    <span class="kicker">极客资源导航 · 每周更新</span>
     <h1>麦禾云创</h1>
     <p>精选极客工具 · 开源宝库 · 云端资源导航</p>
+    </div>
     <div class="search-container">
       <i class="fa-solid fa-magnifying-glass"></i>
       <input type="text" id="searchInput" placeholder="搜索资源或工具名称..." oninput="filterCards()">
@@ -325,6 +329,8 @@
       <a href="https://t.me/+WWxpN-Ji0jxlYmVh" target="_blank">
         <i class="fa-brands fa-telegram"></i> 官方电报群
       </a>
+      <span style="margin: 0 8px; color: var(--card-border);">|</span>
+      <a href="/rss.xml">RSS 订阅</a>
     </p>
   </footer>
 
