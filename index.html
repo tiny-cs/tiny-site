@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>麦禾云创 · 极客资源导航</title>
-  <meta name="description" content="麦禾云创：留学生免费工具、VPS 测评、AI 助手导航。">
+  <title>麦禾云创 · 留学生学生认证工具</title>
+  <meta name="description" content="麦禾云创：一个学生身份，能白拿哪些 AI 和开发工具。只收已核实的，标明截止日期。">
   <link rel="alternate" type="application/rss+xml" title="麦禾云创" href="/rss.xml">
   <!-- FontAwesome 图标库 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -264,6 +264,14 @@
     .subscribe input { flex: 1; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--card-border); background: rgba(15,23,42,.8); color: var(--text-main); outline: none; font-size: .9rem; }
     .subscribe button { padding: 12px 22px; border: none; border-radius: 10px; background: var(--accent); color: #0f172a; font-weight: 700; cursor: pointer; }
     @media (max-width: 640px) { .subscribe form { flex-direction: column; } }
+    .status { max-width: 760px; margin: 0 auto 28px; }
+    .status h2 { font-size: 1.05rem; margin-bottom: 10px; }
+    .status table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .status th, .status td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--card-border); }
+    .status th { color: var(--text-sub); font-weight: 600; }
+    .status .open { color: #4ade80; }
+    .status .closed { color: #f87171; }
+    .status p { color: var(--text-sub); font-size: .8rem; margin-top: 8px; }
     /* 页脚 Footer */
     footer {
       text-align: center;
@@ -306,9 +314,9 @@
   <!-- 🚀 顶部 Header 与 搜索框 -->
   <header>
     <div class="hero">
-    <span class="kicker">留学生免费工具 · 每周更新</span>
+    <span class="kicker">留学生学生认证 · 2026 实时状态</span>
     <h1>麦禾云创</h1>
-    <p>留学生免费福利 · VPS 测评 · AI 助手导航</p>
+    <p>一个学生身份，能白拿哪些 AI 和开发工具 — 只收已核实的，标明截止日期</p>
     </div>
     <div class="search-container">
       <i class="fa-solid fa-magnifying-glass"></i>
@@ -318,12 +326,26 @@
 
   <!-- 📦 主体内容 -->
   <main>
+    <!-- 学生优惠实时状态 -->
+    <section class="status">
+      <h2>📋 学生优惠状态 · 2026-11-19 核实</h2>
+      <table>
+        <tr><th>优惠</th><th>状态</th><th>给什么</th><th>截止</th></tr>
+        <tr><td>Google AI Pro</td><td class="open">进行中</td><td>美国学生 12 个月 AI Pro，其他地区 AI Plus</td><td>2026-12-31</td></tr>
+        <tr><td>GitHub 学生包</td><td class="open">进行中</td><td>Copilot Student、GitHub Pro、$100 Azure</td><td>在读期间</td></tr>
+        <tr><td>JetBrains 学生包</td><td class="open">进行中</td><td>全套 IDE 免费一年，可续期</td><td>在读期间</td></tr>
+        <tr><td>Notion 教育版</td><td class="open">进行中</td><td>学生免费 Plus 计划</td><td>每年核验</td></tr>
+        <tr><td>Figma 教育版</td><td class="open">进行中</td><td>学生免费 Professional 版</td><td>每年核验</td></tr>
+        <tr><td>ChatGPT Plus 学生</td><td class="closed">已结束</td><td>曾给 4 个月免费</td><td>2026-10-31 关闭</td></tr>
+        <tr><td>Cursor 学生 Pro</td><td class="closed">已结束</td><td>曾给 1 年 Pro 免费</td><td>2026-06-25 关闭</td></tr>
+      </table>
+      <p>只收官网能查到的，过期就标已结束，不写已经关门的优惠当现成的。</p>
+    </section>
     <!-- 分类标签导航栏（去除了“全部资源”，默认选中“精选主页”） -->
     <div class="nav-tabs">
       <button class="tab-btn active" onclick="switchTab('home', this)">精选主页</button>
-      <button class="tab-btn" onclick="switchTab('free', this)">免费福利</button>
-      <button class="tab-btn" onclick="switchTab('paid', this)">付费推荐</button>
-      <button class="tab-btn" onclick="switchTab('cloud', this)">云端与AI</button>
+      <button class="tab-btn" onclick="switchTab('ai', this)">学生AI</button>
+      <button class="tab-btn" onclick="switchTab('dev', this)">开发工具</button>
     </div>
 
     <!-- 卡片渲染网格 -->
@@ -381,7 +403,7 @@
 
       const filtered = allData.filter(item => {
         // 如果输入了搜索关键词，则跨分类全局搜索；若未输入关键词，则严格按照当前选中的分类标签显示
-        const matchCategory = keyword ? true : (item.section === currentCategory);
+        const matchCategory = keyword ? true : (currentCategory === 'home' ? true : (item.section === currentCategory));
         const matchKeyword = item.title.toLowerCase().includes(keyword) || 
                              item.desc.toLowerCase().includes(keyword) ||
                              (item.tag && item.tag.toLowerCase().includes(keyword));
