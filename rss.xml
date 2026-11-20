@@ -9,6 +9,13 @@
 
   <!-- 以后每次更新资源，只需在这里增加一个 <item> 节点即可 -->
   <item>
+    <title>Microsoft 365 教育版：学生免费 Word、Excel、PowerPoint</title>
+    <link>https://cs334.ccwu.cc/microsoft365-education.html</link>
+    <description>学校邮箱验证后免费 Word、Excel、PowerPoint 网页版和 Teams，在读期间一直能用；免费版是网页版，桌面版要学校买 A3/A5 才有。</description>
+    <pubDate>Fri, 20 Nov 2026 15:00:00 +0000</pubDate>
+    <guid>https://cs334.ccwu.cc/#microsoft365-education</guid>
+  </item>
+  <item>
     <title>Azure 学生版：$100 额度 12 个月，不用信用卡</title>
     <link>https://cs334.ccwu.cc/azure-student.html</link>
     <description>全日制大学生 12 个月 $100 额度，25 个以上免费服务，注册不用信用卡，在读每年可续。</description>
