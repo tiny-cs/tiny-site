@@ -9,6 +9,13 @@
 
   <!-- 以后每次更新资源，只需在这里增加一个 <item> 节点即可 -->
   <item>
+    <title>Azure 学生版：$100 额度 12 个月，不用信用卡</title>
+    <link>https://cs334.ccwu.cc/azure-student.html</link>
+    <description>全日制大学生 12 个月 $100 额度，25 个以上免费服务，注册不用信用卡，在读每年可续。</description>
+    <pubDate>Fri, 20 Nov 2026 14:00:00 +0000</pubDate>
+    <guid>https://cs334.ccwu.cc/#azure-student</guid>
+  </item>
+  <item>
     <title>Figma 教育版：学生免费专业版，每月 3000 AI 点数</title>
     <link>https://cs334.ccwu.cc/figma-education.html</link>
     <description>学校邮箱验证后免费 Professional 版，无限文件、实时协作，大学生每月 3000 AI 点数，到期重新申请。</description>
