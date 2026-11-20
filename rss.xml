@@ -9,6 +9,13 @@
 
   <!-- 以后每次更新资源，只需在这里增加一个 <item> 节点即可 -->
   <item>
+    <title>Notion 教育版：学生免费 Plus 计划，每年核验一次</title>
+    <link>https://cs334.ccwu.cc/notion-education.html</link>
+    <description>学校邮箱验证一次，单人工作区免费升 Plus：无限页面、无限上传、30 天版本历史。不含完整 Notion AI。</description>
+    <pubDate>Fri, 20 Nov 2026 12:00:00 +0000</pubDate>
+    <guid>https://cs334.ccwu.cc/#notion-education</guid>
+  </item>
+  <item>
     <title>Free Chinese Resources for International Students: DeepSeek, Kimi, Qwen, free Chinese learning and the CSC scholarship</title>
     <link>https://cs334.ccwu.cc/chinese-free-resources-for-international-students.html</link>
     <description>Free AI chat (DeepSeek, Kimi, Qwen), Chinese learning, open courses and the CSC scholarship for international students — most need no Chinese phone number.</description>
