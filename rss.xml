@@ -9,6 +9,13 @@
 
   <!-- 以后每次更新资源，只需在这里增加一个 <item> 节点即可 -->
   <item>
+    <title>学生生活折扣：Spotify、Prime、YouTube 学生价一次看完</title>
+    <link>https://cs334.ccwu.cc/student-discounts.html</link>
+    <description>Spotify $6.99/月含 Hulu、Prime Student 前 6 个月免费、YouTube 学生价 $8.99/月，美国区价格，一次看完。</description>
+    <pubDate>Fri, 20 Nov 2026 15:00:00 +0000</pubDate>
+    <guid>https://cs334.ccwu.cc/#student-discounts</guid>
+  </item>
+  <item>
     <title>Microsoft 365 教育版：学生免费 Word、Excel、PowerPoint</title>
     <link>https://cs334.ccwu.cc/microsoft365-education.html</link>
     <description>学校邮箱验证后免费 Word、Excel、PowerPoint 网页版和 Teams，在读期间一直能用；免费版是网页版，桌面版要学校买 A3/A5 才有。</description>
