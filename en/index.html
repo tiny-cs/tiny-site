@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maihe Cloud · Free Student Tools for International Students</title>
+  <meta name="description" content="Maihe Cloud: one student ID, every free AI & dev tool. Only verified offers, with deadlines.">
+  <link rel="alternate" type="application/rss+xml" title="Maihe Cloud" href="/rss.xml">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --card-bg: rgba(15, 23, 42, 0.65);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --text-main: #f8fafc;
+      --text-sub: #cbd5e1;
+      --warning-color: #fbbf24;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Dark gradient background + glow + fine grid, no external images */
+    body {
+      background:
+        radial-gradient(600px 300px at 15% 0%, rgba(56,189,248,.18), transparent 60%),
+        radial-gradient(500px 300px at 85% 10%, rgba(129,140,248,.16), transparent 60%),
+        linear-gradient(180deg, #0b1220 0%, #0f172a 55%, #111827 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none; z-index: 0;
+    }
+    main, header, footer { position: relative; z-index: 1; }
+    .topbar { max-width: 1200px; margin: 0 auto; width: 100%; padding: 18px 20px 0; display: flex; justify-content: space-between; align-items: center; }
+    .topbar a { color: var(--text-sub); text-decoration: none; font-size: .85rem; margin-left: 16px; }
+    .topbar a:hover { color: var(--accent); }
+    .hero { max-width: 760px; margin: 0 auto; text-align: center; }
+    .hero .kicker { display: inline-block; font-size: .75rem; letter-spacing: 2px; color: var(--accent); border: 1px solid rgba(56,189,248,.4); padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+    /* Featured card wider, promo card gold border */
+    .card.featured { grid-column: span 2; background: linear-gradient(135deg, rgba(56,189,248,.16), rgba(15,23,42,.8)); border-color: rgba(56,189,248,.45); }
+    .card.promo { border-color: rgba(251,191,36,.55); }
+    @media (max-width: 640px) { .card.featured { grid-column: span 1; } }
+
+    /* Header */
+    header {
+      padding: 50px 20px 20px;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+    }
+
+    /* Search box */
+    .search-container {
+      max-width: 520px;
+      margin: 25px auto 0;
+      position: relative;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 14px 20px 14px 48px;
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid var(--card-border);
+      border-radius: 30px;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      backdrop-filter: blur(12px);
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-container input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+      background: rgba(30, 41, 59, 0.9);
+    }
+
+    .search-container i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-sub);
+      font-size: 1rem;
+    }
+
+    /* Main content */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Category tabs */
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      padding: 9px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+      border-color: var(--accent);
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    /* Resource card */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 22px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 35px rgba(56, 189, 248, 0.15);
+      background: rgba(30, 41, 59, 0.8);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      color: var(--text-sub);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 12px;
+    }
+
+    .card-badge {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-sub);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .card-tag {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .card-warning {
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: var(--warning-color);
+      background: rgba(251, 191, 36, 0.12);
+      padding: 6px 10px;
+      border-radius: 6px;
+      line-height: 1.4;
+    }
+
+    /* Email subscribe */
+    .subscribe { max-width: 480px; margin: 0 auto 22px; text-align: center; }
+    .subscribe h2 { font-size: 1rem; margin-bottom: 6px; }
+    .subscribe p { color: var(--text-sub); font-size: .85rem; margin-bottom: 12px; }
+    .subscribe form { display: flex; gap: 10px; max-width: 480px; margin: 0 auto; }
+    .subscribe input { flex: 1; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--card-border); background: rgba(15,23,42,.8); color: var(--text-main); outline: none; font-size: .9rem; }
+    .subscribe button { padding: 12px 22px; border: none; border-radius: 10px; background: var(--accent); color: #0f172a; font-weight: 700; cursor: pointer; }
+    @media (max-width: 640px) { .subscribe form { flex-direction: column; } }
+    .status { max-width: 760px; margin: 0 auto 28px; }
+    .status h2 { font-size: 1.05rem; margin-bottom: 10px; }
+    .status table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .status th, .status td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--card-border); }
+    .status th { color: var(--text-sub); font-weight: 600; }
+    .status .open { color: #4ade80; }
+    .status .closed { color: #f87171; }
+    .status p { color: var(--text-sub); font-size: .8rem; margin-top: 8px; }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      color: var(--text-sub);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--card-border);
+      margin-top: 50px;
+      backdrop-filter: blur(10px);
+      background: rgba(15, 23, 42, 0.5);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      header h1 { font-size: 1.9rem; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <strong>🌾 Maihe Cloud</strong>
+    <div><a href="/rss.xml">RSS</a>
+      <span style="margin: 0 8px; color: var(--card-border);">|</span>
+      <a href="https://t.me/maihe334" target="_blank">Telegram</a>
+      <span style="margin: 0 8px; color: var(--card-border);">|</span>
+      <a href="/">中文</a></div>
+  </div>
+
+  <!-- Header + search -->
+  <header>
+    <div class="hero">
+    <span class="kicker">STUDENT VERIFICATION · LIVE STATUS 2026</span>
+    <h1>Maihe Cloud</h1>
+    <p>One student ID, every free AI &amp; dev tool — only verified offers, with deadlines</p>
+    </div>
+    <div class="search-container">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Search tools..." oninput="filterCards()">
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main>
+    <!-- Live student discount status -->
+    <section class="status">
+      <h2>📋 Student Discount Status · Verified Nov 20, 2026</h2>
+      <table>
+        <tr><th>Offer</th><th>Status</th><th>What you get</th><th>Deadline</th></tr>
+        <tr><td>Google AI Pro</td><td class="open">Open</td><td>US students: 12 months of AI Pro; other regions: AI Plus</td><td>Dec 31, 2026</td></tr>
+        <tr><td>GitHub Student Pack</td><td class="open">Open</td><td>Copilot Student, GitHub Pro, $100 Azure credit</td><td>While enrolled</td></tr>
+        <tr><td>JetBrains Student Pack</td><td class="open">Open</td><td>All IDEs free for one year, renewable</td><td>While enrolled</td></tr>
+        <tr><td>Notion Education</td><td class="open">Open</td><td>Free Plus plan for students</td><td>Re-verify yearly</td></tr>
+        <tr><td>Figma Education</td><td class="open">Open</td><td>Free Professional plan for students</td><td>Re-verify yearly</td></tr>
+        <tr><td>Azure for Students</td><td class="open">Open</td><td>$100 credit for 12 months, no credit card</td><td>Renew yearly</td></tr>
+        <tr><td>Microsoft 365 Education</td><td class="open">Open</td><td>Word, Excel, PowerPoint web apps and Teams</td><td>While enrolled</td></tr>
+        <tr><td>Spotify Student</td><td class="open">Open</td><td>$6.99/mo, includes Hulu (with ads, US)</td><td>Up to 4 years</td></tr>
+        <tr><td>Amazon Prime Student</td><td class="open">Open</td><td>First 6 months free, then $7.49/mo (US)</td><td>Up to 4 years</td></tr>
+        <tr><td>YouTube Premium Student</td><td class="open">Open</td><td>$8.99/mo, includes YouTube Music (US)</td><td>Up to 4 years</td></tr>
+        <tr><td>ChatGPT Plus Student</td><td class="closed">Ended</td><td>Was 4 months free</td><td>Closed Oct 31, 2026</td></tr>
+        <tr><td>Cursor Student Pro</td><td class="closed">Ended</td><td>Was 1 year of Pro free</td><td>Closed Jun 25, 2026</td></tr>
+      </table>
+      <p>Only offers verified on official pages. Expired ones are marked ended — we don't list closed offers as if they were still available.</p>
+    </section>
+    <!-- Category tabs -->
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('home', this)">Featured</button>
+      <button class="tab-btn" onclick="switchTab('ai', this)">Student AI</button>
+      <button class="tab-btn" onclick="switchTab('dev', this)">Developer Tools</button>
+    </div>
+
+    <!-- Card grid -->
+    <div class="card-grid" id="cardGrid">
+      <!-- Loaded from data.json by JS -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <!-- Email subscribe -->
+    <section class="subscribe">
+      <h2>📧 Email Newsletter</h2>
+      <p>New tutorials and tools, straight to your inbox — at most one email a week.</p>
+      <form action="https://buttondown.com/api/emails/embed-subscribe/Tiny334" method="post" target="_blank">
+        <input type="email" name="email" placeholder="Your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+    <p>© 2026 Maihe Cloud · All Rights Reserved.</p>
+    <p style="margin-top: 8px;">
+      Contact: <a href="mailto:tiny.golf878@slmails.com">tiny.golf878@slmails.com</a>
+      <span style="margin: 0 8px; color: var(--card-border);">|</span>
+      <a href="https://t.me/maihe334" target="_blank">
+        <i class="fa-brands fa-telegram"></i> Telegram Group
+      </a>
+      <span style="margin: 0 8px; color: var(--card-border);">|</span>
+      <a href="/rss.xml">RSS</a>
+      <span style="margin: 0 8px; color: var(--card-border);">|</span>
+      <a href="https://ko-fi.com/maihecloud" target="_blank">☕ Buy us a coffee</a>
+    </p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    let allData = [];
+    let currentCategory = 'home'; // default category: Featured
+
+    // Load data.json on page load
+    async function loadData() {
+      try {
+        const response = await fetch('data.json');
+        allData = await response.json();
+        renderCards();
+      } catch (error) {
+        console.error('Failed to load data.json:', error);
+        document.getElementById('cardGrid').innerHTML = '<p style="color: var(--text-sub); grid-column: 1/-1; text-align: center;">Failed to load resources. Please check your connection.</p>';
+      }
+    }
+
+    // Render cards
+    function renderCards() {
+      const grid = document.getElementById('cardGrid');
+      const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      const filtered = allData.filter(item => {
+        const matchCategory = keyword ? true : (currentCategory === 'home' ? true : (item.section === currentCategory));
+        const matchKeyword = item.title.toLowerCase().includes(keyword) ||
+                             item.desc.toLowerCase().includes(keyword) ||
+                             (item.tag && item.tag.toLowerCase().includes(keyword));
+        return matchCategory && matchKeyword;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<p style="color: var(--text-sub); grid-column: 1/-1; text-align: center; padding: 40px 0;">No matching resources found</p>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => `
+        <a href="${item.link}" target="_blank" class="card${item.featured ? ' featured' : ''}${item.promo ? ' promo' : ''}">
+          <div>
+            <div class="card-header">
+              <div class="card-icon">${item.icon || '🔗'}</div>
+              <div class="card-title">${item.title}</div>
+            </div>
+            <div class="card-desc">${item.desc}</div>
+          </div>
+          <div>
+            ${item.warning ? `<div class="card-warning">${item.warning}</div>` : ''}
+            <div class="card-meta">
+              <span class="card-badge">${item.badge || 'Resource'}</span>
+              <span class="card-tag">${item.tag || ''}</span>
+            </div>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    // Switch category tab
+    function switchTab(category, btn) {
+      currentCategory = category;
+      document.getElementById('searchInput').value = '';
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCards();
+    }
+
+    // Search filter
+    function filterCards() {
+      renderCards();
+    }
+
+    // Init
+    loadData();
+  </script>
+</body>
+</html>
