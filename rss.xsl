@@ -7,7 +7,7 @@
 </head><body>
 <h1>🌾 <xsl:value-of select="/rss/channel/title"/></h1>
 <p><xsl:value-of select="/rss/channel/description"/></p>
-<p>这是本站的 RSS 订阅源，请复制 <code>https://cs334.ccwu.cc/rss.xml</code> 到你的 RSS 阅读器（如 NetNewsWire、Feedly）里订阅。</p>
+<p>这是本站的 RSS 订阅源，请复制 <code>https://maihe334.ccwu.cc/rss.xml</code> 到你的 RSS 阅读器（如 NetNewsWire、Feedly）里订阅。</p>
 <ul>
 <xsl:for-each select="/rss/channel/item">
 <li><a href="{link}"><xsl:value-of select="title"/></a><br/><span class="date"><xsl:value-of select="pubDate"/></span><br/><xsl:value-of select="description"/></li>

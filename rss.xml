@@ -3,66 +3,66 @@
 <rss version="2.0">
 <channel>
   <title>麦禾云创 / 麦禾之家</title>
-  <link>https://cs334.ccwu.cc/</link>
+  <link>https://maihe334.ccwu.cc/</link>
   <description>麦禾云创官方极客资源与导航站更新推送</description>
   <language>zh-cn</language>
 
   <!-- 以后每次更新资源，只需在这里增加一个 <item> 节点即可 -->
   <item>
     <title>学生生活折扣：Spotify、Prime、YouTube 学生价一次看完</title>
-    <link>https://cs334.ccwu.cc/student-discounts.html</link>
+    <link>https://maihe334.ccwu.cc/student-discounts.html</link>
     <description>Spotify $6.99/月含 Hulu、Prime Student 前 6 个月免费、YouTube 学生价 $8.99/月，美国区价格，一次看完。</description>
     <pubDate>Fri, 20 Nov 2026 15:00:00 +0000</pubDate>
-    <guid>https://cs334.ccwu.cc/#student-discounts</guid>
+    <guid>https://maihe334.ccwu.cc/#student-discounts</guid>
   </item>
   <item>
     <title>Microsoft 365 教育版：学生免费 Word、Excel、PowerPoint</title>
-    <link>https://cs334.ccwu.cc/microsoft365-education.html</link>
+    <link>https://maihe334.ccwu.cc/microsoft365-education.html</link>
     <description>学校邮箱验证后免费 Word、Excel、PowerPoint 网页版和 Teams，在读期间一直能用；免费版是网页版，桌面版要学校买 A3/A5 才有。</description>
     <pubDate>Fri, 20 Nov 2026 15:00:00 +0000</pubDate>
-    <guid>https://cs334.ccwu.cc/#microsoft365-education</guid>
+    <guid>https://maihe334.ccwu.cc/#microsoft365-education</guid>
   </item>
   <item>
     <title>Azure 学生版：$100 额度 12 个月，不用信用卡</title>
-    <link>https://cs334.ccwu.cc/azure-student.html</link>
+    <link>https://maihe334.ccwu.cc/azure-student.html</link>
     <description>全日制大学生 12 个月 $100 额度，25 个以上免费服务，注册不用信用卡，在读每年可续。</description>
     <pubDate>Fri, 20 Nov 2026 14:00:00 +0000</pubDate>
-    <guid>https://cs334.ccwu.cc/#azure-student</guid>
+    <guid>https://maihe334.ccwu.cc/#azure-student</guid>
   </item>
   <item>
     <title>Figma 教育版：学生免费专业版，每月 3000 AI 点数</title>
-    <link>https://cs334.ccwu.cc/figma-education.html</link>
+    <link>https://maihe334.ccwu.cc/figma-education.html</link>
     <description>学校邮箱验证后免费 Professional 版，无限文件、实时协作，大学生每月 3000 AI 点数，到期重新申请。</description>
     <pubDate>Fri, 20 Nov 2026 12:00:00 +0000</pubDate>
-    <guid>https://cs334.ccwu.cc/#figma-education</guid>
+    <guid>https://maihe334.ccwu.cc/#figma-education</guid>
   </item>
   <item>
     <title>Notion 教育版：学生免费 Plus 计划，每年核验一次</title>
-    <link>https://cs334.ccwu.cc/notion-education.html</link>
+    <link>https://maihe334.ccwu.cc/notion-education.html</link>
     <description>学校邮箱验证一次，单人工作区免费升 Plus：无限页面、无限上传、30 天版本历史。不含完整 Notion AI。</description>
     <pubDate>Fri, 20 Nov 2026 12:00:00 +0000</pubDate>
-    <guid>https://cs334.ccwu.cc/#notion-education</guid>
+    <guid>https://maihe334.ccwu.cc/#notion-education</guid>
   </item>
   <item>
     <title>Free Chinese Resources for International Students: DeepSeek, Kimi, Qwen, free Chinese learning and the CSC scholarship</title>
-    <link>https://cs334.ccwu.cc/chinese-free-resources-for-international-students.html</link>
+    <link>https://maihe334.ccwu.cc/chinese-free-resources-for-international-students.html</link>
     <description>Free AI chat (DeepSeek, Kimi, Qwen), Chinese learning, open courses and the CSC scholarship for international students — most need no Chinese phone number.</description>
     <pubDate>Fri, 20 Nov 2026 12:00:00 +0000</pubDate>
-    <guid>https://cs334.ccwu.cc/#chinese-free-resources</guid>
+    <guid>https://maihe334.ccwu.cc/#chinese-free-resources</guid>
   </item>
   <item>
     <title>Hostinger 测评：VPS $6.49 起，黑五到 12 月 14 日</title>
-    <link>https://cs334.ccwu.cc/hostinger-review.html</link>
+    <link>https://maihe334.ccwu.cc/hostinger-review.html</link>
     <description>Hostinger VPS KVM 1 只要 $6.49/月，续费 $11.99/月，黑五价和 8 月一样，续费涨价和没有亚洲机房要看清。</description>
     <pubDate>Tue, 18 Nov 2026 12:00:00 +0000</pubDate>
-    <guid>https://cs334.ccwu.cc/#hostinger-review</guid>
+    <guid>https://maihe334.ccwu.cc/#hostinger-review</guid>
   </item>
   <item>
     <title>麦禾云创资源导航站上线通知</title>
-    <link>https://cs334.ccwu.cc/</link>
+    <link>https://maihe334.ccwu.cc/</link>
     <description>麦禾云创资源导航站已正式发布，提供极客工具与云端资源索引。</description>
     <pubDate>Mon, 02 Nov 2026 12:00:00 +0000</pubDate>
-    <guid>https://cs334.ccwu.cc/#v1.0</guid>
+    <guid>https://maihe334.ccwu.cc/#v1.0</guid>
   </item>
 
 </channel>
